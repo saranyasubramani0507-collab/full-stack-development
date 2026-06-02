@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Cart</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f1f5f9;
+      padding:30px;
+      color:#111827;
+    }
+
+    h1{
+      text-align:center;
+      margin-bottom:30px;
+    }
+
+    .container{
+      max-width:1200px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:25px;
+    }
+
+    /* Product Section */
+    .products{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+    }
+
+    .product-card{
+      background:white;
+      border-radius:12px;
+      padding:20px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+      text-align:center;
+    }
+
+    .product-card img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:10px;
+      margin-bottom:15px;
+    }
+
+    .product-card h3{
+      margin-bottom:10px;
+    }
+
+    .price{
+      color:#2563eb;
+      font-size:22px;
+      font-weight:bold;
+      margin-bottom:15px;
+    }
+
+    .btn{
+      padding:12px;
+      width:100%;
+      border:none;
+      border-radius:8px;
+      background:#2563eb;
+      color:white;
+      cursor:pointer;
+      font-size:15px;
+    }
+
+    .btn:hover{
+      background:#1d4ed8;
+    }
+
+    /* Cart */
+    .cart{
+      background:white;
+      border-radius:12px;
+      padding:20px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+      height:fit-content;
+    }
+
+    .cart h2{
+      margin-bottom:20px;
+    }
+
+    .cart-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:15px;
+      padding-bottom:10px;
+      border-bottom:1px solid #e2e8f0;
+    }
+
+    .cart-item-info h4{
+      margin-bottom:5px;
+    }
+
+    .remove-btn{
+      background:#dc2626;
+      border:none;
+      color:white;
+      padding:6px 10px;
+      border-radius:6px;
+      cursor:pointer;
+    }
+
+    .total{
+      margin-top:20px;
+      font-size:20px;
+      font-weight:bold;
+    }
+
+    .checkout-btn{
+      margin-top:20px;
+      width:100%;
+      padding:14px;
+      background:#16a34a;
+      border:none;
+      border-radius:8px;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+    }
+
+    .checkout-btn:hover{
+      background:#15803d;
+    }
+
+    @media(max-width:900px){
+      .container{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Shopping Cart Functionality</h1>
+
+  <div class="container">
+
+    <!-- Products -->
+    <div class="products">
+
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x180" alt="Product">
+
+        <h3>Wireless Headphones</h3>
+
+        <div class="price">₹2999</div>
+
+        <button class="btn"
+          onclick="addToCart('Wireless Headphones',2999)">
+          Add to Cart
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x180" alt="Product">
+
+        <h3>Smart Watch</h3>
+
+        <div class="price">₹4499</div>
+
+        <button class="btn"
+          onclick="addToCart('Smart Watch',4499)">
+          Add to Cart
+        </button>
+      </div>
+
+      <div class="product-card">
+        <img src="https://via.placeholder.com/250x180" alt="Product">
+
+        <h3>Bluetooth Speaker</h3>
+
+        <div class="price">₹1799</div>
+
+        <button class="btn"
+          onclick="addToCart('Bluetooth Speaker',1799)">
+          Add to Cart
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Cart -->
+    <div class="cart">
+
+      <h2>Cart</h2>
+
+      <div id="cart-items"></div>
+
+      <div class="total">
+        Total: ₹<span id="cart-total">0</span>
+      </div>
+
+      <button class="checkout-btn">
+        Checkout
+      </button>
+
+    </div>
+
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(name, price){
+
+      cart.push({name, price});
+      total += price;
+
+      renderCart();
+    }
+
+    function removeFromCart(index){
+
+      total -= cart[index].price;
+
+      cart.splice(index,1);
+
+      renderCart();
+    }
+
+    function renderCart(){
+
+      const cartItems =
+        document.getElementById("cart-items");
+
+      cartItems.innerHTML = "";
+
+      cart.forEach((item,index)=>{
+
+        cartItems.innerHTML += `
+          <div class="cart-item">
+
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>₹${item.price}</p>
+            </div>
+
+            <button class="remove-btn"
+              onclick="removeFromCart(${index})">
+              Remove
+            </button>
+
+          </div>
+        `;
+      });
+
+      document.getElementById("cart-total")
+        .innerText = total;
+    }
+  </script>
+
+</body>
+</html>
