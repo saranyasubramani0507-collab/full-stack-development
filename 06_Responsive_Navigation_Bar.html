@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Navigation Bar</title>
+
+  <!-- Font Awesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f4f4;
+    }
+
+    /* Navbar */
+    .navbar{
+      width:100%;
+      background:#0f172a;
+      color:white;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 30px;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    /* Logo */
+    .logo{
+      font-size:24px;
+      font-weight:bold;
+      color:#38bdf8;
+    }
+
+    /* Navigation Links */
+    .nav-links{
+      display:flex;
+      list-style:none;
+      gap:25px;
+    }
+
+    .nav-links li a{
+      text-decoration:none;
+      color:white;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .nav-links li a:hover{
+      color:#38bdf8;
+    }
+
+    /* Buttons */
+    .nav-buttons{
+      display:flex;
+      gap:10px;
+    }
+
+    .btn{
+      padding:8px 16px;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+      transition:0.3s;
+      font-size:14px;
+    }
+
+    .login{
+      background:transparent;
+      color:white;
+      border:1px solid white;
+    }
+
+    .signup{
+      background:#38bdf8;
+      color:white;
+    }
+
+    .btn:hover{
+      opacity:0.8;
+    }
+
+    /* Hamburger Menu */
+    .menu-toggle{
+      display:none;
+      font-size:24px;
+      cursor:pointer;
+    }
+
+    /* Mobile Responsive */
+    @media(max-width:768px){
+
+      .menu-toggle{
+        display:block;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:70px;
+        left:0;
+        width:100%;
+        background:#0f172a;
+        flex-direction:column;
+        align-items:center;
+        padding:20px 0;
+        display:none;
+      }
+
+      .nav-links.active{
+        display:flex;
+      }
+
+      .nav-buttons{
+        display:none;
+      }
+    }
+
+    /* Demo Section */
+    .hero{
+      height:90vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero h1{
+      font-size:50px;
+      margin-bottom:15px;
+      color:#0f172a;
+    }
+
+    .hero p{
+      font-size:18px;
+      color:#555;
+      max-width:600px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+
+    <!-- Logo -->
+    <div class="logo">MyWebsite</div>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+
+    <!-- Buttons -->
+    <div class="nav-buttons">
+      <button class="btn login">Login</button>
+      <button class="btn signup">Sign Up</button>
+    </div>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+
+    <h1>Responsive Navigation Bar</h1>
+
+    <p>
+      This is a modern responsive navigation menu built using
+      HTML, CSS, and JavaScript.
+    </p>
+
+  </section>
+
+  <script>
+
+    // Toggle Mobile Menu
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Signup UI</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+    }
+
+    .container{
+      width:800px;
+      height:500px;
+      background:#fff;
+      border-radius:15px;
+      overflow:hidden;
+      display:flex;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .left,
+    .right{
+      width:50%;
+      padding:40px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .left{
+      background:#f7f7f7;
+    }
+
+    h2{
+      margin-bottom:20px;
+      color:#333;
+      text-align:center;
+    }
+
+    form{
+      display:flex;
+      flex-direction:column;
+    }
+
+    input{
+      padding:12px;
+      margin:10px 0;
+      border:1px solid #ccc;
+      border-radius:8px;
+      outline:none;
+      font-size:16px;
+    }
+
+    input:focus{
+      border-color:#4facfe;
+    }
+
+    button{
+      padding:12px;
+      margin-top:15px;
+      border:none;
+      border-radius:8px;
+      background:#4facfe;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#00c6fb;
+    }
+
+    .right{
+      background: linear-gradient(135deg, #43e97b, #38f9d7);
+      color:white;
+      text-align:center;
+    }
+
+    .right h1{
+      font-size:32px;
+      margin-bottom:20px;
+    }
+
+    .right p{
+      font-size:18px;
+      line-height:1.5;
+    }
+
+    @media(max-width:768px){
+      .container{
+        flex-direction:column;
+        width:90%;
+        height:auto;
+      }
+
+      .left,
+      .right{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Login Form -->
+    <div class="left">
+      <h2>Login</h2>
+
+      <form>
+        <input type="email" placeholder="Enter Email" required>
+        <input type="password" placeholder="Enter Password" required>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <br><br>
+
+      <h2>Signup</h2>
+
+      <form>
+        <input type="text" placeholder="Full Name" required>
+        <input type="email" placeholder="Enter Email" required>
+        <input type="password" placeholder="Create Password" required>
+
+        <button type="submit">Signup</button>
+      </form>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right">
+      <h1>Welcome</h1>
+      <p>
+        Create your account and access amazing features.<br><br>
+        Login if you already have an account.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

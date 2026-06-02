@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OTP Verification System</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 95%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .success {
+      color: green;
+      margin-top: 10px;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    #otpSection {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>OTP Verification</h2>
+
+    <!-- Phone Number -->
+    <input type="text" id="phone" placeholder="Enter Phone Number" />
+
+    <!-- Send OTP Button -->
+    <button onclick="sendOTP()">Send OTP</button>
+
+    <!-- OTP Section -->
+    <div id="otpSection">
+      <input type="text" id="otpInput" placeholder="Enter OTP" />
+      <button onclick="verifyOTP()">Verify OTP</button>
+    </div>
+
+    <!-- Message -->
+    <p id="message"></p>
+  </div>
+
+  <script>
+    let generatedOTP = "";
+
+    // Send OTP Function
+    function sendOTP() {
+      const phone = document.getElementById("phone").value;
+      const message = document.getElementById("message");
+
+      if (phone === "") {
+        message.innerHTML = "Please enter phone number";
+        message.className = "error";
+        return;
+      }
+
+      // Generate 6-digit OTP
+      generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+
+      // Show OTP in console (for demo)
+      console.log("Generated OTP:", generatedOTP);
+
+      alert("OTP Sent Successfully!\nDemo OTP: " + generatedOTP);
+
+      // Show OTP input section
+      document.getElementById("otpSection").style.display = "block";
+
+      message.innerHTML = "OTP sent successfully";
+      message.className = "success";
+    }
+
+    // Verify OTP Function
+    function verifyOTP() {
+      const enteredOTP = document.getElementById("otpInput").value;
+      const message = document.getElementById("message");
+
+      if (enteredOTP === generatedOTP) {
+        message.innerHTML = "OTP Verified Successfully ✅";
+        message.className = "success";
+      } else {
+        message.innerHTML = "Invalid OTP ❌";
+        message.className = "error";
+      }
+    }
+  </script>
+
+</body>
+</html>
