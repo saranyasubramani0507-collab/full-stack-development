@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Integration UI</title>
+
+<style>
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+  }
+
+  body{
+    background:#f1f5f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+  }
+
+  .payment-box{
+    width:100%;
+    max-width:500px;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  h2{
+    margin-bottom:20px;
+    text-align:center;
+  }
+
+  .amount{
+    text-align:center;
+    font-size:26px;
+    font-weight:bold;
+    color:#2563eb;
+    margin-bottom:20px;
+  }
+
+  .methods{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-bottom:20px;
+  }
+
+  .method{
+    border:1px solid #cbd5e1;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .method:hover{
+    border-color:#2563eb;
+  }
+
+  .method input{
+    accent-color:#2563eb;
+  }
+
+  .form-group{
+    margin-top:15px;
+  }
+
+  .form-group input{
+    width:100%;
+    padding:12px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    outline:none;
+  }
+
+  .btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#16a34a;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:20px;
+  }
+
+  .btn:hover{
+    background:#15803d;
+  }
+
+  /* Success Screen */
+  .success{
+    display:none;
+    text-align:center;
+  }
+
+  .success h3{
+    color:#16a34a;
+    font-size:24px;
+    margin-top:15px;
+  }
+
+  .check{
+    font-size:60px;
+    color:#16a34a;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="payment-box" id="paymentBox">
+
+  <h2>Secure Payment</h2>
+
+  <div class="amount">₹7,598</div>
+
+  <!-- Payment Methods -->
+  <div class="methods">
+
+    <label class="method">
+      <input type="radio" name="pay" value="card" checked>
+      Credit / Debit Card
+    </label>
+
+    <label class="method">
+      <input type="radio" name="pay" value="upi">
+      UPI Payment
+    </label>
+
+    <label class="method">
+      <input type="radio" name="pay" value="cod">
+      Cash on Delivery
+    </label>
+
+  </div>
+
+  <!-- Card Fields -->
+  <div class="form-group">
+    <input type="text" placeholder="Card Number">
+  </div>
+
+  <div class="form-group">
+    <input type="text" placeholder="MM/YY">
+  </div>
+
+  <div class="form-group">
+    <input type="text" placeholder="CVV">
+  </div>
+
+  <button class="btn" onclick="payNow()">
+    Pay Now
+  </button>
+
+</div>
+
+<!-- Success Screen -->
+<div class="payment-box success" id="successBox">
+
+  <div class="check">✔</div>
+
+  <h3>Payment Successful</h3>
+
+  <p>Your order has been placed successfully.</p>
+
+</div>
+
+<script>
+  function payNow(){
+
+    // Simulate payment delay
+    const btn = document.querySelector(".btn");
+    btn.innerText = "Processing...";
+
+    setTimeout(()=>{
+      document.getElementById("paymentBox").style.display = "none";
+      document.getElementById("successBox").style.display = "block";
+    },2000);
+
+  }
+</script>
+
+</body>
+</html>

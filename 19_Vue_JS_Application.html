@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vue.js App</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, sans-serif;
+      background:#f1f5f9;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    .box{
+      background:white;
+      padding:30px;
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      text-align:center;
+      width:300px;
+    }
+
+    button{
+      margin:5px;
+      padding:10px 15px;
+      border:none;
+      border-radius:8px;
+      background:#2563eb;
+      color:white;
+      cursor:pointer;
+    }
+
+    button:hover{
+      background:#1d4ed8;
+    }
+
+    input{
+      padding:10px;
+      width:100%;
+      margin-top:10px;
+      border:1px solid #cbd5e1;
+      border-radius:8px;
+      outline:none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app" class="box">
+
+    <h1>🚀 Vue.js App</h1>
+
+    <p>Counter: {{ count }}</p>
+
+    <button @click="increase">Increase</button>
+    <button @click="decrease">Decrease</button>
+
+    <hr style="margin:15px 0;">
+
+    <input v-model="message" placeholder="Type something..." />
+
+    <p>You typed: {{ message }}</p>
+
+  </div>
+
+  <!-- Vue.js CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          count: 0,
+          message: ""
+        }
+      },
+      methods: {
+        increase(){
+          this.count++;
+        },
+        decrease(){
+          this.count--;
+        }
+      }
+    }).mount("#app");
+  </script>
+
+</body>
+</html>

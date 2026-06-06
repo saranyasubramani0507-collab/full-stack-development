@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Animations</title>
+
+<style>
+  body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    flex-direction:column;
+    gap:30px;
+  }
+
+  /* ---------------- Fade In ---------------- */
+  .fade-box{
+    width:150px;
+    height:150px;
+    background:#2563eb;
+    border-radius:12px;
+    animation:fadeIn 2s ease-in-out;
+  }
+
+  @keyframes fadeIn{
+    from{ opacity:0; transform:scale(0.8); }
+    to{ opacity:1; transform:scale(1); }
+  }
+
+  /* ---------------- Slide In ---------------- */
+  .slide-box{
+    width:150px;
+    height:150px;
+    background:#16a34a;
+    border-radius:12px;
+    animation:slideIn 2s ease-out;
+  }
+
+  @keyframes slideIn{
+    from{ transform:translateX(-200px); opacity:0; }
+    to{ transform:translateX(0); opacity:1; }
+  }
+
+  /* ---------------- Bounce ---------------- */
+  .bounce-box{
+    width:150px;
+    height:150px;
+    background:#f59e0b;
+    border-radius:12px;
+    animation:bounce 1.5s infinite;
+  }
+
+  @keyframes bounce{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-30px); }
+  }
+
+  /* ---------------- Pulse ---------------- */
+  .pulse-box{
+    width:150px;
+    height:150px;
+    background:#ef4444;
+    border-radius:12px;
+    animation:pulse 1.5s infinite;
+  }
+
+  @keyframes pulse{
+    0%{ transform:scale(1); opacity:1; }
+    50%{ transform:scale(1.1); opacity:0.7; }
+    100%{ transform:scale(1); opacity:1; }
+  }
+
+  /* ---------------- Spinner ---------------- */
+  .spinner{
+    width:60px;
+    height:60px;
+    border:6px solid #334155;
+    border-top:6px solid #60a5fa;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+  }
+
+  @keyframes spin{
+    0%{ transform:rotate(0deg); }
+    100%{ transform:rotate(360deg); }
+  }
+
+</style>
+</head>
+
+<body>
+
+  <h1>CSS Animations Demo</h1>
+
+  <div class="fade-box"></div>
+
+  <div class="slide-box"></div>
+
+  <div class="bounce-box"></div>
+
+  <div class="pulse-box"></div>
+
+  <div class="spinner"></div>
+
+</body>
+</html>

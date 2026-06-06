@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Angular Style Dashboard UI</title>
+
+<style>
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+  }
+
+  body{
+    display:flex;
+    height:100vh;
+    background:#f1f5f9;
+  }
+
+  /* Sidebar */
+  .sidebar{
+    width:250px;
+    background:#0f172a;
+    color:white;
+    padding:20px;
+  }
+
+  .sidebar h2{
+    margin-bottom:30px;
+    text-align:center;
+  }
+
+  .sidebar a{
+    display:block;
+    color:#cbd5e1;
+    text-decoration:none;
+    padding:12px;
+    border-radius:8px;
+    margin-bottom:8px;
+  }
+
+  .sidebar a:hover{
+    background:#1e293b;
+    color:white;
+  }
+
+  /* Main */
+  .main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* Navbar */
+  .navbar{
+    background:white;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .navbar h3{
+    color:#111827;
+  }
+
+  .profile{
+    background:#2563eb;
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+  }
+
+  /* Content */
+  .content{
+    padding:20px;
+  }
+
+  /* Cards */
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+  }
+
+  .card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    text-align:center;
+  }
+
+  .card h4{
+    color:#64748b;
+    margin-bottom:10px;
+  }
+
+  .card p{
+    font-size:24px;
+    font-weight:bold;
+  }
+
+  /* Table */
+  .table-box{
+    margin-top:30px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    overflow-x:auto;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+  }
+
+  th, td{
+    padding:12px;
+    border-bottom:1px solid #e2e8f0;
+    text-align:left;
+  }
+
+  th{
+    background:#f8fafc;
+  }
+
+  @media(max-width:768px){
+    body{
+      flex-direction:column;
+    }
+
+    .sidebar{
+      width:100%;
+      text-align:center;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Angular UI</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">Users</a>
+    <a href="#">Orders</a>
+    <a href="#">Products</a>
+    <a href="#">Settings</a>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Navbar -->
+    <div class="navbar">
+      <h3>Dashboard</h3>
+      <div class="profile">Admin</div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <!-- Cards -->
+      <div class="cards">
+
+        <div class="card">
+          <h4>Users</h4>
+          <p>1,250</p>
+        </div>
+
+        <div class="card">
+          <h4>Orders</h4>
+          <p>540</p>
+        </div>
+
+        <div class="card">
+          <h4>Revenue</h4>
+          <p>₹95,000</p>
+        </div>
+
+        <div class="card">
+          <h4>Products</h4>
+          <p>320</p>
+        </div>
+
+      </div>
+
+      <!-- Table -->
+      <div class="table-box">
+
+        <h3 style="margin-bottom:15px;">Recent Activity</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>John</td>
+              <td>Active</td>
+            </tr>
+
+            <tr>
+              <td>2</td>
+              <td>Priya</td>
+              <td>Pending</td>
+            </tr>
+
+            <tr>
+              <td>3</td>
+              <td>Rahul</td>
+              <td>Blocked</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>State Management Demo</title>
+
+<style>
+  body{
+    font-family:Arial, sans-serif;
+    background:#f1f5f9;
+    padding:30px;
+    text-align:center;
+  }
+
+  .box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    width:300px;
+    margin:auto;
+  }
+
+  button{
+    padding:10px 15px;
+    margin:5px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+  }
+
+  button:hover{
+    background:#1d4ed8;
+  }
+
+  input{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+  }
+
+  .state-box{
+    margin-top:15px;
+    padding:10px;
+    background:#f8fafc;
+    border-radius:8px;
+  }
+</style>
+</head>
+
+<body>
+
+<h1>⚡ State Management Demo</h1>
+
+<div class="box">
+
+  <h2>Counter State</h2>
+
+  <p>Count: <span id="count">0</span></p>
+
+  <button onclick="updateState('INCREMENT')">Increase</button>
+  <button onclick="updateState('DECREMENT')">Decrease</button>
+
+  <hr style="margin:15px 0;">
+
+  <h2>User State</h2>
+
+  <input type="text" id="username" placeholder="Enter name">
+
+  <button onclick="setUser()">Save User</button>
+
+  <div class="state-box">
+    <p>User: <span id="user">None</span></p>
+  </div>
+
+</div>
+
+<script>
+  // --------------------------
+  // CENTRAL STATE (like Redux)
+  // --------------------------
+  const state = {
+    count: 0,
+    user: "None"
+  };
+
+  // --------------------------
+  // UPDATE STATE FUNCTION
+  // --------------------------
+  function updateState(action){
+
+    if(action === "INCREMENT"){
+      state.count++;
+    }
+
+    if(action === "DECREMENT"){
+      state.count--;
+    }
+
+    render();
+  }
+
+  // --------------------------
+  // SET USER STATE
+  // --------------------------
+  function setUser(){
+    const name = document.getElementById("username").value;
+    state.user = name || "None";
+    render();
+  }
+
+  // --------------------------
+  // RENDER UI FROM STATE
+  // --------------------------
+  function render(){
+    document.getElementById("count").innerText = state.count;
+    document.getElementById("user").innerText = state.user;
+  }
+
+  // initial render
+  render();
+</script>
+
+</body>
+</html>

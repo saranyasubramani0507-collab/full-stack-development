@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Website</title>
+
+<style>
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+  }
+
+  body{
+    background:#f1f5f9;
+    color:#111827;
+  }
+
+  /* Navbar */
+  .navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 30px;
+    background:#111827;
+    color:white;
+    position:sticky;
+    top:0;
+  }
+
+  .nav-links a{
+    color:white;
+    text-decoration:none;
+    margin-left:15px;
+  }
+
+  /* Hero */
+  .hero{
+    text-align:center;
+    padding:80px 20px;
+    background:linear-gradient(to right,#2563eb,#1e40af);
+    color:white;
+  }
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  .hero p{
+    margin-top:10px;
+    font-size:18px;
+  }
+
+  .btn{
+    margin-top:20px;
+    padding:12px 20px;
+    border:none;
+    background:white;
+    color:#2563eb;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+  }
+
+  /* Sections */
+  section{
+    padding:50px 20px;
+    max-width:1000px;
+    margin:auto;
+  }
+
+  h2{
+    text-align:center;
+    margin-bottom:20px;
+  }
+
+  /* About */
+  .about{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  /* Skills */
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+  }
+
+  .skill{
+    background:#2563eb;
+    color:white;
+    padding:10px 15px;
+    border-radius:20px;
+  }
+
+  /* Projects */
+  .projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+  }
+
+  .project{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  /* Contact */
+  .contact form{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  input, textarea{
+    padding:10px;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+  }
+
+  button.submit{
+    background:#16a34a;
+    color:white;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+  }
+
+  /* Footer */
+  footer{
+    text-align:center;
+    padding:20px;
+    background:#111827;
+    color:white;
+    margin-top:20px;
+  }
+
+  @media(max-width:768px){
+    .hero h1{
+      font-size:28px;
+    }
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+  <h2>My Portfolio</h2>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Hi, I'm a Web Developer</h1>
+  <p>I build modern responsive websites</p>
+  <button class="btn">Hire Me</button>
+</div>
+
+<!-- About -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about">
+    <p>
+      I am a passionate frontend developer skilled in HTML, CSS, JavaScript,
+      and modern frameworks. I create responsive and user-friendly websites.
+    </p>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="skill">HTML</div>
+    <div class="skill">CSS</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">React</div>
+    <div class="skill">Angular</div>
+    <div class="skill">Bootstrap</div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <h2>Projects</h2>
+
+  <div class="projects">
+
+    <div class="project">
+      <h3>E-commerce Website</h3>
+      <p>Full shopping cart system with frontend UI.</p>
+    </div>
+
+    <div class="project">
+      <h3>Admin Dashboard</h3>
+      <p>Responsive admin panel with charts and data.</p>
+    </div>
+
+    <div class="project">
+      <h3>Portfolio Website</h3>
+      <p>Personal portfolio with responsive design.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact Me</h2>
+
+  <form>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea rows="5" placeholder="Your Message"></textarea>
+    <button class="submit">Send Message</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  © 2026 My Portfolio. All Rights Reserved.
+</footer>
+
+</body>
+</html>

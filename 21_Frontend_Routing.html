@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frontend Routing Demo</title>
+
+<style>
+  *{
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+    box-sizing:border-box;
+  }
+
+  body{
+    background:#f1f5f9;
+  }
+
+  /* Navbar */
+  .navbar{
+    background:#111827;
+    padding:15px;
+    display:flex;
+    gap:20px;
+  }
+
+  .navbar a{
+    color:white;
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:6px;
+  }
+
+  .navbar a:hover{
+    background:#2563eb;
+  }
+
+  /* Page container */
+  .container{
+    padding:30px;
+  }
+
+  .page{
+    display:none;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .active{
+    display:block;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<div class="navbar">
+  <a href="#" onclick="navigate('home')">Home</a>
+  <a href="#" onclick="navigate('about')">About</a>
+  <a href="#" onclick="navigate('services')">Services</a>
+  <a href="#" onclick="navigate('contact')">Contact</a>
+</div>
+
+<!-- Pages -->
+<div class="container">
+
+  <div id="home" class="page active">
+    <h1>🏠 Home Page</h1>
+    <p>Welcome to the home page.</p>
+  </div>
+
+  <div id="about" class="page">
+    <h1>ℹ️ About Page</h1>
+    <p>This is the about section.</p>
+  </div>
+
+  <div id="services" class="page">
+    <h1>🛠️ Services Page</h1>
+    <p>We provide web development services.</p>
+  </div>
+
+  <div id="contact" class="page">
+    <h1>📞 Contact Page</h1>
+    <p>Contact us at example@email.com</p>
+  </div>
+
+</div>
+
+<script>
+  function navigate(pageId){
+
+    // hide all pages
+    document.querySelectorAll(".page").forEach(page=>{
+      page.classList.remove("active");
+    });
+
+    // show selected page
+    document.getElementById(pageId).classList.add("active");
+
+    // update URL (optional SPA behavior)
+    window.location.hash = pageId;
+  }
+
+  // Load page from URL hash
+  window.onload = function(){
+    const hash = window.location.hash.replace("#","");
+
+    if(hash){
+      navigate(hash);
+    }
+  }
+</script>
+
+</body>
+</html>
