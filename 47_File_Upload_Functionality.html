@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>File Upload Functionality</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f3f4f6;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+    }
+
+    .container{
+        background:white;
+        padding:25px;
+        width:400px;
+        border-radius:12px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2{
+        text-align:center;
+        margin-bottom:20px;
+    }
+
+    input[type="file"]{
+        width:100%;
+        margin:15px 0;
+    }
+
+    button{
+        width:100%;
+        padding:10px;
+        background:#2563eb;
+        color:white;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+        font-size:16px;
+    }
+
+    button:hover{
+        background:#1d4ed8;
+    }
+
+    .preview{
+        margin-top:20px;
+        text-align:center;
+    }
+
+    img{
+        max-width:100%;
+        border-radius:10px;
+        margin-top:10px;
+    }
+
+    .file-info{
+        background:#f9fafb;
+        padding:10px;
+        border-radius:6px;
+        margin-top:10px;
+        font-size:14px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>File Upload Demo</h2>
+
+    <input type="file" id="fileInput">
+
+    <button onclick="uploadFile()">Upload File</button>
+
+    <div class="preview" id="preview"></div>
+
+</div>
+
+<script>
+
+function uploadFile(){
+
+    const fileInput =
+        document.getElementById("fileInput");
+
+    const file = fileInput.files[0];
+
+    if(!file){
+        alert("Please select a file");
+        return;
+    }
+
+    const preview =
+        document.getElementById("preview");
+
+    // File information
+    preview.innerHTML = `
+        <div class="file-info">
+            <strong>File Name:</strong> ${file.name}<br>
+            <strong>File Type:</strong> ${file.type}<br>
+            <strong>File Size:</strong>
+            ${(file.size / 1024).toFixed(2)} KB
+        </div>
+    `;
+
+    // Image preview
+    if(file.type.startsWith("image/")){
+
+        const reader = new FileReader();
+
+        reader.onload = function(e){
+
+            preview.innerHTML += `
+                <img src="${e.target.result}"
+                     alt="Preview">
+            `;
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    // Example upload simulation
+    console.log("Uploading file:", file);
+
+    // Real upload example:
+    /*
+    const formData = new FormData();
+    formData.append("file", file);
+
+    fetch("http://localhost:5000/upload", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => console.log(data));
+    */
+}
+
+</script>
+
+</body>
+</html>

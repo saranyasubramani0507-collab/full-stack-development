@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cloud Storage Upload</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:30px;
+  }
+
+  .box{
+    background:white;
+    padding:20px;
+    width:400px;
+    border-radius:10px;
+  }
+
+  button{
+    width:100%;
+    padding:10px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+
+  img{
+    width:100%;
+    margin-top:15px;
+    border-radius:10px;
+  }
+
+  .result{
+    margin-top:10px;
+    background:#e2e8f0;
+    padding:10px;
+    border-radius:8px;
+  }
+</style>
+</head>
+
+<body>
+
+<h2>Cloud Storage Integration</h2>
+
+<div class="box">
+
+  <input type="file" id="imageInput">
+
+  <button onclick="uploadImage()">
+    Upload to Cloud
+  </button>
+
+  <div class="result" id="output"></div>
+
+  <img id="preview">
+
+</div>
+
+<script>
+
+async function uploadImage(){
+
+  const file =
+    document.getElementById("imageInput")
+      .files[0];
+
+  if(!file){
+    alert("Select image first");
+    return;
+  }
+
+  const formData = new FormData();
+
+  formData.append("image", file);
+
+  const res = await fetch(
+    "http://localhost:5000/upload",
+    {
+      method: "POST",
+      body: formData
+    }
+  );
+
+  const data = await res.json();
+
+  if(data.success){
+
+    document.getElementById("output")
+      .innerHTML = "Upload Successful ✅";
+
+    document.getElementById("preview")
+      .src = data.imageUrl;
+
+  } else {
+
+    document.getElementById("output")
+      .innerHTML = data.message;
+  }
+}
+
+</script>
+
+</body>
+</html>

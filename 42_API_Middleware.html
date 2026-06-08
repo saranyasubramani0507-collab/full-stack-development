@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Middleware Demo</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:30px;
+  }
+
+  .box{
+    background:white;
+    padding:20px;
+    width:400px;
+    border-radius:10px;
+  }
+
+  button{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+  }
+
+  .result{
+    margin-top:10px;
+    background:#e2e8f0;
+    padding:10px;
+    border-radius:8px;
+  }
+</style>
+</head>
+
+<body>
+
+<h2>API Middleware Demo (HTML + Node.js)</h2>
+
+<div class="box">
+
+  <button onclick="callPublic()">Call Public API</button>
+
+  <button onclick="callPrivate()">Call Private API (No Token)</button>
+
+  <button onclick="callPrivateAuth()">Call Private API (With Token)</button>
+
+  <div class="result" id="output"></div>
+
+</div>
+
+<script>
+
+// PUBLIC API
+async function callPublic(){
+  const res = await fetch("http://localhost:5000/public");
+  const data = await res.json();
+
+  document.getElementById("output").innerText =
+    JSON.stringify(data);
+}
+
+// PRIVATE API (NO TOKEN)
+async function callPrivate(){
+  const res = await fetch("http://localhost:5000/private");
+  const data = await res.json();
+
+  document.getElementById("output").innerText =
+    JSON.stringify(data);
+}
+
+// PRIVATE API (WITH TOKEN)
+async function callPrivateAuth(){
+  const res = await fetch("http://localhost:5000/private", {
+    headers: {
+      "Authorization": "mytoken123"
+    }
+  });
+
+  const data = await res.json();
+
+  document.getElementById("output").innerText =
+    JSON.stringify(data);
+}
+
+</script>
+
+</body>
+</html>

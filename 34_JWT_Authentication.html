@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JWT Auth Frontend</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:30px;
+  }
+
+  .box{
+    background:white;
+    padding:20px;
+    width:400px;
+    border-radius:10px;
+  }
+
+  input{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+  }
+
+  button{
+    width:100%;
+    padding:10px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+
+  .result{
+    margin-top:10px;
+    background:#e2e8f0;
+    padding:10px;
+    border-radius:6px;
+  }
+</style>
+</head>
+
+<body>
+
+<h2>JWT Authentication Demo</h2>
+
+<div class="box">
+
+  <!-- LOGIN -->
+  <h3>Login</h3>
+
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="login()">Login</button>
+
+  <hr>
+
+  <!-- PROTECTED API -->
+  <button onclick="getProfile()">Get Profile (Protected API)</button>
+
+  <div class="result" id="output"></div>
+
+</div>
+
+<script>
+
+let accessToken = "";
+
+// ------------------------
+// LOGIN FUNCTION
+// ------------------------
+async function login(){
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch("http://127.0.0.1:8000/api/login/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ username, password })
+  });
+
+  const data = await res.json();
+
+  if(data.access){
+    accessToken = data.access;
+
+    // store token in browser
+    localStorage.setItem("token", accessToken);
+
+    document.getElementById("output").innerHTML =
+      "✅ Login Success! Token saved.";
+  } else {
+    document.getElementById("output").innerHTML =
+      "❌ Login Failed";
+  }
+}
+
+// ------------------------
+// PROTECTED API CALL
+// ------------------------
+async function getProfile(){
+
+  const token = localStorage.getItem("token");
+
+  const res = await fetch("http://127.0.0.1:8000/api/profile/", {
+    method: "GET",
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  });
+
+  const data = await res.json();
+
+  document.getElementById("output").innerHTML =
+    JSON.stringify(data);
+}
+
+</script>
+
+</body>
+</html>

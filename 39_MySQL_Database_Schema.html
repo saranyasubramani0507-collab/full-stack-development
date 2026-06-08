@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MySQL Schema Generator</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:30px;
+  }
+
+  .box{
+    background:white;
+    padding:20px;
+    width:500px;
+    border-radius:10px;
+  }
+
+  input, select{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+  }
+
+  button{
+    padding:10px;
+    width:100%;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:10px;
+  }
+
+  pre{
+    background:#111827;
+    color:#22c55e;
+    padding:10px;
+    margin-top:15px;
+    border-radius:8px;
+    overflow:auto;
+  }
+</style>
+</head>
+
+<body>
+
+<h2>MySQL Database Schema Generator</h2>
+
+<div class="box">
+
+  <input type="text" id="dbName" placeholder="Enter Database Name">
+
+  <input type="text" id="tableName" placeholder="Enter Table Name">
+
+  <select id="fieldType">
+    <option value="INT AUTO_INCREMENT PRIMARY KEY">ID (Primary Key)</option>
+    <option value="VARCHAR(100)">Name (VARCHAR)</option>
+    <option value="VARCHAR(150)">Email (VARCHAR)</option>
+    <option value="TEXT">Text</option>
+    <option value="DECIMAL(10,2)">Price</option>
+    <option value="TIMESTAMP DEFAULT CURRENT_TIMESTAMP">Timestamp</option>
+  </select>
+
+  <input type="text" id="fieldName" placeholder="Field Name (e.g. name, email)">
+
+  <button onclick="generateSchema()">Generate SQL Schema</button>
+
+  <pre id="output"></pre>
+
+</div>
+
+<script>
+
+let fields = [];
+
+function generateSchema(){
+
+  const db = document.getElementById("dbName").value;
+  const table = document.getElementById("tableName").value;
+  const fieldName = document.getElementById("fieldName").value;
+  const fieldType = document.getElementById("fieldType").value;
+
+  if(fieldName){
+    fields.push(`${fieldName} ${fieldType}`);
+  }
+
+  let sql = `CREATE DATABASE ${db};\nUSE ${db};\n\nCREATE TABLE ${table} (\n`;
+
+  sql += "  id INT AUTO_INCREMENT PRIMARY KEY,\n";
+
+  fields.forEach((f, index) => {
+    sql += "  " + f;
+    sql += index < fields.length - 1 ? ",\n" : "\n";
+  });
+
+  sql += ");";
+
+  document.getElementById("output").innerText = sql;
+}
+
+</script>
+
+</body>
+</html>

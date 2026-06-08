@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Notification API System</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:30px;
+  }
+
+  .box{
+    background:white;
+    padding:20px;
+    width:450px;
+    border-radius:10px;
+  }
+
+  input, textarea{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+  }
+
+  button{
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    margin-top:5px;
+  }
+
+  .notification{
+    background:#e2e8f0;
+    padding:10px;
+    margin-top:10px;
+    border-radius:8px;
+  }
+
+  .read{
+    opacity:0.6;
+  }
+</style>
+</head>
+
+<body>
+
+<h2>Notification API Demo</h2>
+
+<div class="box">
+
+  <input
+    type="text"
+    id="title"
+    placeholder="Notification Title"
+  >
+
+  <textarea
+    id="message"
+    placeholder="Notification Message"
+  ></textarea>
+
+  <button onclick="createNotification()">
+    Create Notification
+  </button>
+
+  <hr>
+
+  <button onclick="loadNotifications()">
+    Load Notifications
+  </button>
+
+  <div id="list"></div>
+
+</div>
+
+<script>
+
+// CREATE NOTIFICATION
+async function createNotification(){
+
+  const title =
+    document.getElementById("title").value;
+
+  const message =
+    document.getElementById("message").value;
+
+  await fetch("http://localhost:5000/notifications", {
+
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json"
+    },
+
+    body: JSON.stringify({
+      title,
+      message
+    })
+  });
+
+  loadNotifications();
+}
+
+// LOAD NOTIFICATIONS
+async function loadNotifications(){
+
+  const res = await fetch(
+    "http://localhost:5000/notifications"
+  );
+
+  const notifications = await res.json();
+
+  document.getElementById("list").innerHTML =
+    notifications.map(n => `
+      <div class="notification ${n.read ? 'read' : ''}">
+        <h4>${n.title}</h4>
+        <p>${n.message}</p>
+
+        <button onclick="markRead(${n.id})">
+          Mark Read
+        </button>
+
+        <button onclick="deleteNotification(${n.id})">
+          Delete
+        </button>
+      </div>
+    `).join("");
+}
+
+// MARK READ
+async function markRead(id){
+
+  await fetch(
+    `http://localhost:5000/notifications/${id}`,
+    {
+      method: "PUT"
+    }
+  );
+
+  loadNotifications();
+}
+
+// DELETE
+async function deleteNotification(id){
+
+  await fetch(
+    `http://localhost:5000/notifications/${id}`,
+    {
+      method: "DELETE"
+    }
+  );
+
+  loadNotifications();
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RBAC Frontend Demo</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:30px;
+  }
+
+  .box{
+    background:white;
+    padding:20px;
+    width:400px;
+    border-radius:10px;
+  }
+
+  button{
+    padding:10px;
+    margin:5px 0;
+    width:100%;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#2563eb;
+    color:white;
+  }
+
+  .hidden{
+    display:none;
+  }
+
+  .panel{
+    margin-top:15px;
+    padding:10px;
+    border-radius:8px;
+    background:#e2e8f0;
+  }
+</style>
+</head>
+
+<body>
+
+<h2>Role-Based Access Control (Frontend)</h2>
+
+<div class="box">
+
+  <h3>Select Role</h3>
+
+  <button onclick="setRole('user')">Login as User</button>
+  <button onclick="setRole('staff')">Login as Staff</button>
+  <button onclick="setRole('admin')">Login as Admin</button>
+
+  <hr>
+
+  <h3 id="roleText">Role: None</h3>
+
+  <!-- USER PANEL -->
+  <div class="panel" id="userPanel">
+    <h4>User Dashboard</h4>
+    <p>Basic access features</p>
+  </div>
+
+  <!-- STAFF PANEL -->
+  <div class="panel hidden" id="staffPanel">
+    <h4>Staff Panel</h4>
+    <p>Staff management tools</p>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="panel hidden" id="adminPanel">
+    <h4>Admin Panel</h4>
+    <p>Full system control</p>
+  </div>
+
+</div>
+
+<script>
+
+function setRole(role){
+
+  document.getElementById("roleText").innerText = "Role: " + role;
+
+  // always show user panel
+  document.getElementById("userPanel").classList.remove("hidden");
+
+  // staff access
+  if(role === "staff" || role === "admin"){
+    document.getElementById("staffPanel").classList.remove("hidden");
+  } else {
+    document.getElementById("staffPanel").classList.add("hidden");
+  }
+
+  // admin access
+  if(role === "admin"){
+    document.getElementById("adminPanel").classList.remove("hidden");
+  } else {
+    document.getElementById("adminPanel").classList.add("hidden");
+  }
+
+  // store role
+  localStorage.setItem("role", role);
+}
+
+// auto load saved role
+window.onload = function(){
+  const role = localStorage.getItem("role");
+
+  if(role){
+    setRole(role);
+  }
+}
+
+</script>
+
+</body>
+</html>

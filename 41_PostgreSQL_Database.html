@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PostgreSQL Integration</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:30px;
+  }
+
+  .box{
+    background:white;
+    padding:20px;
+    width:400px;
+    border-radius:10px;
+  }
+
+  input{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+  }
+
+  button{
+    width:100%;
+    padding:10px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+  }
+
+  .user{
+    background:#e2e8f0;
+    padding:10px;
+    margin-top:10px;
+    border-radius:8px;
+    display:flex;
+    justify-content:space-between;
+  }
+</style>
+</head>
+
+<body>
+
+<h2>PostgreSQL + HTML Integration</h2>
+
+<div class="box">
+
+  <input type="text" id="name" placeholder="Name">
+  <input type="email" id="email" placeholder="Email">
+
+  <button onclick="addUser()">Add User</button>
+
+  <hr>
+
+  <button onclick="loadUsers()">Load Users</button>
+
+  <div id="users"></div>
+
+</div>
+
+<script>
+
+// CREATE USER
+async function addUser(){
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+
+  await fetch("http://localhost:5000/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, email })
+  });
+
+  loadUsers();
+}
+
+// READ USERS
+async function loadUsers(){
+
+  const res = await fetch("http://localhost:5000/users");
+  const users = await res.json();
+
+  document.getElementById("users").innerHTML =
+    users.map(u => `
+      <div class="user">
+        <span>${u.name}</span>
+        <button onclick="deleteUser(${u.id})">X</button>
+      </div>
+    `).join("");
+}
+
+// DELETE USER
+async function deleteUser(id){
+
+  await fetch(`http://localhost:5000/users/${id}`, {
+    method: "DELETE"
+  });
+
+  loadUsers();
+}
+
+</script>
+
+</body>
+</html>

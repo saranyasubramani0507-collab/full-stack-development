@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Management System</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:30px;
+  }
+
+  .box{
+    background:white;
+    padding:20px;
+    width:500px;
+    border-radius:10px;
+  }
+
+  input{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+  }
+
+  button{
+    padding:10px;
+    width:100%;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+  }
+
+  .user{
+    background:#e2e8f0;
+    padding:10px;
+    margin-top:10px;
+    border-radius:8px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  .btn-small{
+    width:auto;
+    padding:5px 10px;
+    margin-left:5px;
+    font-size:12px;
+  }
+</style>
+</head>
+
+<body>
+
+<h2>User Management System (API Frontend)</h2>
+
+<div class="box">
+
+  <!-- CREATE USER -->
+  <input type="text" id="name" placeholder="Enter Name">
+  <input type="email" id="email" placeholder="Enter Email">
+
+  <button onclick="createUser()">Add User</button>
+
+  <hr>
+
+  <button onclick="loadUsers()">Load Users</button>
+
+  <div id="users"></div>
+
+</div>
+
+<script>
+
+// ----------------------
+// LOAD USERS (GET API)
+// ----------------------
+async function loadUsers(){
+
+  const res = await fetch("/api/users");
+  const users = await res.json();
+
+  document.getElementById("users").innerHTML =
+    users.map(user => `
+      <div class="user">
+        <div>
+          <b>${user.name}</b><br>
+          <small>${user.email}</small>
+        </div>
+
+        <div>
+          <button class="btn-small" onclick="deleteUser(${user.id})">Delete</button>
+          <button class="btn-small" onclick="editUser(${user.id})">Edit</button>
+        </div>
+      </div>
+    `).join("");
+}
+
+// ----------------------
+// CREATE USER (POST)
+// ----------------------
+async function createUser(){
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+
+  await fetch("/api/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, email })
+  });
+
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+
+  loadUsers();
+}
+
+// ----------------------
+// DELETE USER
+// ----------------------
+async function deleteUser(id){
+
+  await fetch(`/api/users/${id}`, {
+    method: "DELETE"
+  });
+
+  loadUsers();
+}
+
+// ----------------------
+// UPDATE USER (simple prompt demo)
+// ----------------------
+async function editUser(id){
+
+  const newName = prompt("Enter new name:");
+  const newEmail = prompt("Enter new email:");
+
+  await fetch(`/api/users/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: newName,
+      email: newEmail
+    })
+  });
+
+  loadUsers();
+}
+
+</script>
+
+</body>
+</html>

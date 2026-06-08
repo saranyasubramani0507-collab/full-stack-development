@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Database Connected Users</h2>
+
+<button onclick="loadUsers()">Load Users</button>
+
+<div id="list"></div>
+
+<script>
+async function loadUsers(){
+  const res = await fetch("http://localhost:5000/users");
+  const data = await res.json();
+
+  document.getElementById("list").innerHTML =
+    data.map(u => `<p>${u.name} - ${u.email}</p>`).join("");
+}
+</script>
+
+</body>
+</html>
