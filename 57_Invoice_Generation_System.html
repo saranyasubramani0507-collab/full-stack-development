@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Generation System</title>
+
+<style>
+    body{
+        font-family:Arial, sans-serif;
+        background:#f3f4f6;
+        padding:30px;
+    }
+
+    .invoice-container{
+        max-width:800px;
+        margin:auto;
+        background:white;
+        padding:30px;
+        border-radius:12px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1{
+        text-align:center;
+        color:#2563eb;
+    }
+
+    .top-section{
+        display:flex;
+        justify-content:space-between;
+        margin-bottom:20px;
+    }
+
+    input{
+        width:100%;
+        padding:8px;
+        margin:5px 0;
+        border:1px solid #ccc;
+        border-radius:6px;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+        margin-top:20px;
+    }
+
+    table th, table td{
+        border:1px solid #ddd;
+        padding:10px;
+        text-align:center;
+    }
+
+    table th{
+        background:#2563eb;
+        color:white;
+    }
+
+    .btn{
+        background:#2563eb;
+        color:white;
+        border:none;
+        padding:10px 15px;
+        border-radius:6px;
+        cursor:pointer;
+        margin-top:15px;
+    }
+
+    .btn:hover{
+        background:#1d4ed8;
+    }
+
+    .total{
+        text-align:right;
+        margin-top:20px;
+        font-size:20px;
+        font-weight:bold;
+    }
+
+    @media print{
+        .no-print{
+            display:none;
+        }
+
+        body{
+            background:white;
+        }
+
+        .invoice-container{
+            box-shadow:none;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="invoice-container">
+
+    <h1>Invoice Generator</h1>
+
+    <div class="top-section">
+
+        <div>
+            <h3>Seller Details</h3>
+
+            <input type="text"
+                   id="seller"
+                   placeholder="Seller Name">
+
+            <input type="text"
+                   id="sellerAddress"
+                   placeholder="Seller Address">
+        </div>
+
+        <div>
+            <h3>Customer Details</h3>
+
+            <input type="text"
+                   id="customer"
+                   placeholder="Customer Name">
+
+            <input type="text"
+                   id="customerAddress"
+                   placeholder="Customer Address">
+        </div>
+
+    </div>
+
+    <table id="invoiceTable">
+
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody id="invoiceBody"></tbody>
+
+    </table>
+
+    <button class="btn no-print"
+            onclick="addItem()">
+        Add Item
+    </button>
+
+    <div class="total">
+        Grand Total: ₹<span id="grandTotal">0</span>
+    </div>
+
+    <button class="btn no-print"
+            onclick="printInvoice()">
+        Print Invoice
+    </button>
+
+</div>
+
+<script>
+
+function addItem(){
+
+    const tbody =
+        document.getElementById("invoiceBody");
+
+    const row =
+        document.createElement("tr");
+
+    row.innerHTML = `
+        <td>
+            <input type="text"
+                   placeholder="Product Name"
+                   onchange="calculateTotal()">
+        </td>
+
+        <td>
+            <input type="number"
+                   placeholder="Price"
+                   onchange="calculateTotal()">
+        </td>
+
+        <td>
+            <input type="number"
+                   placeholder="Qty"
+                   onchange="calculateTotal()">
+        </td>
+
+        <td class="rowTotal">0</td>
+    `;
+
+    tbody.appendChild(row);
+}
+
+function calculateTotal(){
+
+    let grandTotal = 0;
+
+    const rows =
+        document.querySelectorAll("#invoiceBody tr");
+
+    rows.forEach(row => {
+
+        const inputs =
+            row.querySelectorAll("input");
+
+        const price =
+            parseFloat(inputs[1].value) || 0;
+
+        const qty =
+            parseFloat(inputs[2].value) || 0;
+
+        const total = price * qty;
+
+        row.querySelector(".rowTotal")
+            .innerText = total.toFixed(2);
+
+        grandTotal += total;
+    });
+
+    document.getElementById("grandTotal")
+        .innerText = grandTotal.toFixed(2);
+}
+
+function printInvoice(){
+    window.print();
+}
+
+// Add default row
+addItem();
+
+</script>
+
+</body>
+</html>

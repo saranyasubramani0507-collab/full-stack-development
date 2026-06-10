@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Razorpay Payment Integration</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+  }
+
+  .box{
+    background:white;
+    padding:30px;
+    width:300px;
+    text-align:center;
+    border-radius:10px;
+  }
+
+  button{
+    width:100%;
+    padding:12px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+  }
+
+  button:hover{
+    background:#1d4ed8;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h2>Buy Product</h2>
+  <p>Price: ₹500</p>
+
+  <button onclick="payNow()">
+    Pay with Razorpay
+  </button>
+
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+async function payNow(){
+
+  // Step 1: create order from backend
+  const res = await fetch(
+    "http://localhost:5000/create-order",
+    {
+      method: "POST"
+    }
+  );
+
+  const order = await res.json();
+
+  // Step 2: Razorpay options
+  const options = {
+
+    key: "YOUR_KEY_ID",
+
+    amount: order.amount,
+    currency: order.currency,
+    order_id: order.id,
+
+    name: "My Shop",
+    description: "Product Payment",
+
+    handler: function (response) {
+
+      alert("Payment Successful ✅");
+
+      console.log(response);
+      // You can send response to backend for verification
+    },
+
+    theme: {
+      color: "#2563eb"
+    }
+  };
+
+  // Step 3: Open Razorpay popup
+  const rzp = new Razorpay(options);
+  rzp.open();
+}
+
+</script>
+
+</body>
+</html>

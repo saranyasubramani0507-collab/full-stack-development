@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment Gateway</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+  }
+
+  .box{
+    background:white;
+    padding:30px;
+    width:300px;
+    border-radius:10px;
+    text-align:center;
+  }
+
+  button{
+    width:100%;
+    padding:12px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+  }
+
+  button:hover{
+    background:#1d4ed8;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h2>Buy Premium</h2>
+  <p>Price: $10</p>
+
+  <button onclick="payNow()">
+    Pay Now
+  </button>
+
+</div>
+
+<script>
+
+async function payNow(){
+
+  const res = await fetch(
+    "http://localhost:5000/create-checkout-session",
+    {
+      method: "POST"
+    }
+  );
+
+  const data = await res.json();
+
+  // Redirect to Stripe Checkout
+  window.location.href = data.url;
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swagger API Documentation</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+.header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    padding:25px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+.header h1{
+    font-size:35px;
+}
+
+.header p{
+    margin-top:10px;
+    opacity:.8;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:30px auto;
+}
+
+.api-card{
+    background:#1e293b;
+    border-radius:15px;
+    margin-bottom:20px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
+    transition:.3s;
+}
+
+.api-card:hover{
+    transform:translateY(-5px);
+}
+
+.api-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    cursor:pointer;
+}
+
+.method{
+    padding:8px 15px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.get{
+    background:#22c55e;
+}
+
+.post{
+    background:#2563eb;
+}
+
+.put{
+    background:#f59e0b;
+}
+
+.delete{
+    background:#ef4444;
+}
+
+.endpoint{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.api-body{
+    display:none;
+    padding:20px;
+    border-top:1px solid #334155;
+}
+
+.code{
+    background:#0f172a;
+    padding:15px;
+    border-radius:10px;
+    overflow:auto;
+    margin-top:10px;
+    color:#38bdf8;
+}
+
+.try-btn{
+    background:#7c3aed;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.try-btn:hover{
+    background:#6d28d9;
+}
+
+.status{
+    color:#22c55e;
+    margin-top:10px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📘 Swagger API Documentation</h1>
+    <p>Interactive REST API Documentation</p>
+</div>
+
+<div class="container">
+
+    <!-- GET API -->
+
+    <div class="api-card">
+
+        <div class="api-header" onclick="toggle(this)">
+            <span class="method get">GET</span>
+            <span class="endpoint">/api/users</span>
+        </div>
+
+        <div class="api-body">
+
+            <h3>Description</h3>
+            <p>Fetch all users from database.</p>
+
+            <div class="code">
+GET /api/users
+
+Response:
+[
+ {
+   "id":1,
+   "name":"John"
+ }
+]
+            </div>
+
+            <button class="try-btn" onclick="runApi('GET Users')">
+                Try It Out
+            </button>
+
+            <div class="status" id="result1"></div>
+
+        </div>
+
+    </div>
+
+    <!-- POST API -->
+
+    <div class="api-card">
+
+        <div class="api-header" onclick="toggle(this)">
+            <span class="method post">POST</span>
+            <span class="endpoint">/api/register</span>
+        </div>
+
+        <div class="api-body">
+
+            <h3>Description</h3>
+            <p>Create a new user account.</p>
+
+            <div class="code">
+POST /api/register
+
+{
+ "name":"Nila",
+ "email":"nila@email.com"
+}
+            </div>
+
+            <button class="try-btn" onclick="runApi('Register User')">
+                Try It Out
+            </button>
+
+            <div class="status" id="result2"></div>
+
+        </div>
+
+    </div>
+
+    <!-- PUT API -->
+
+    <div class="api-card">
+
+        <div class="api-header" onclick="toggle(this)">
+            <span class="method put">PUT</span>
+            <span class="endpoint">/api/users/1</span>
+        </div>
+
+        <div class="api-body">
+
+            <h3>Description</h3>
+            <p>Update user information.</p>
+
+            <div class="code">
+PUT /api/users/1
+
+{
+ "name":"Updated User"
+}
+            </div>
+
+            <button class="try-btn" onclick="runApi('Update User')">
+                Try It Out
+            </button>
+
+            <div class="status" id="result3"></div>
+
+        </div>
+
+    </div>
+
+    <!-- DELETE API -->
+
+    <div class="api-card">
+
+        <div class="api-header" onclick="toggle(this)">
+            <span class="method delete">DELETE</span>
+            <span class="endpoint">/api/users/1</span>
+        </div>
+
+        <div class="api-body">
+
+            <h3>Description</h3>
+            <p>Delete user permanently.</p>
+
+            <div class="code">
+DELETE /api/users/1
+            </div>
+
+            <button class="try-btn" onclick="runApi('Delete User')">
+                Try It Out
+            </button>
+
+            <div class="status" id="result4"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function toggle(element){
+
+    let body = element.nextElementSibling;
+
+    body.style.display =
+    body.style.display === "block"
+    ? "none"
+    : "block";
+}
+
+function runApi(action){
+
+    alert(action + " API Executed Successfully 🚀");
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stripe Payment API</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+  }
+
+  .box{
+    background:white;
+    padding:30px;
+    width:320px;
+    border-radius:10px;
+    text-align:center;
+  }
+
+  button{
+    width:100%;
+    padding:12px;
+    background:#635bff;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+  }
+
+  button:hover{
+    background:#4f46e5;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h2>Stripe Checkout</h2>
+
+  <p>Premium Product - $20</p>
+
+  <button onclick="checkout()">
+    Pay with Stripe
+  </button>
+
+</div>
+
+<script>
+
+async function checkout(){
+
+  const res = await fetch(
+    "http://localhost:5000/create-checkout-session",
+    {
+      method: "POST"
+    }
+  );
+
+  const data = await res.json();
+
+  // Redirect to Stripe Checkout
+  window.location.href = data.url;
+}
+
+</script>
+
+</body>
+</html>

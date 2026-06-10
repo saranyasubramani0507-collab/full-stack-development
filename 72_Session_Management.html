@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Management</title>
+</head>
+<body>
+
+    <h2>Session Management Demo</h2>
+
+    <input type="text" id="username" placeholder="Enter Username">
+    <button onclick="login()">Login</button>
+    <button onclick="getProfile()">Get Profile</button>
+    <button onclick="logout()">Logout</button>
+
+    <p id="result"></p>
+
+    <script>
+        async function login() {
+            const username = document.getElementById("username").value;
+
+            const response = await fetch("http://localhost:3000/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify({ username })
+            });
+
+            const data = await response.json();
+            document.getElementById("result").innerText = data.message;
+        }
+
+        async function getProfile() {
+            const response = await fetch("http://localhost:3000/profile", {
+                credentials: "include"
+            });
+
+            const data = await response.json();
+            document.getElementById("result").innerText =
+                JSON.stringify(data);
+        }
+
+        async function logout() {
+            const response = await fetch("http://localhost:3000/logout", {
+                credentials: "include"
+            });
+
+            const data = await response.json();
+            document.getElementById("result").innerText = data.message;
+        }
+    </script>
+
+</body>
+</html>
+Backend (server.js)

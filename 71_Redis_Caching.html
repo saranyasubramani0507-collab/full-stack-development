@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redis Cache Demo</title>
+</head>
+<body>
+    <h2>User Data</h2>
+
+    <button onclick="getUser()">Get User</button>
+
+    <div id="result"></div>
+
+    <script>
+        async function getUser() {
+            const response = await fetch("http://localhost:3000/user/1");
+            const data = await response.json();
+
+            document.getElementById("result").innerHTML =
+                `<p>Name: ${data.name}</p>
+                 <p>Email: ${data.email}</p>`;
+        }
+    </script>
+</body>
+</html>
+Backend (server.js) - Node.js + Express + Redis

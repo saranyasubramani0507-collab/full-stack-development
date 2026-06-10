@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagination System</title>
+
+<style>
+    body{
+        font-family:Arial, sans-serif;
+        background:#f3f4f6;
+        padding:30px;
+    }
+
+    .container{
+        max-width:900px;
+        margin:auto;
+        background:white;
+        padding:20px;
+        border-radius:12px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2{
+        text-align:center;
+        margin-bottom:20px;
+        color:#2563eb;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+    }
+
+    table th,
+    table td{
+        border:1px solid #ddd;
+        padding:12px;
+        text-align:center;
+    }
+
+    table th{
+        background:#2563eb;
+        color:white;
+    }
+
+    .pagination{
+        display:flex;
+        justify-content:center;
+        margin-top:20px;
+        gap:10px;
+        flex-wrap:wrap;
+    }
+
+    .pagination button{
+        padding:10px 15px;
+        border:none;
+        border-radius:6px;
+        background:#e5e7eb;
+        cursor:pointer;
+        font-size:14px;
+    }
+
+    .pagination button.active{
+        background:#2563eb;
+        color:white;
+    }
+
+    .pagination button:hover{
+        background:#1d4ed8;
+        color:white;
+    }
+
+    @media(max-width:600px){
+        table{
+            font-size:14px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Pagination System</h2>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody"></tbody>
+
+    </table>
+
+    <div class="pagination" id="pagination"></div>
+
+</div>
+
+<script>
+
+// Sample data
+const users = [];
+
+for(let i = 1; i <= 50; i++){
+
+    users.push({
+        id: i,
+        name: `User ${i}`,
+        email: `user${i}@example.com`
+    });
+}
+
+// Pagination settings
+const rowsPerPage = 5;
+
+let currentPage = 1;
+
+// Display table data
+function displayTable(page){
+
+    currentPage = page;
+
+    const tableBody =
+        document.getElementById("tableBody");
+
+    tableBody.innerHTML = "";
+
+    const start =
+        (page - 1) * rowsPerPage;
+
+    const end =
+        start + rowsPerPage;
+
+    const paginatedItems =
+        users.slice(start, end);
+
+    paginatedItems.forEach(user => {
+
+        tableBody.innerHTML += `
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+            </tr>
+        `;
+    });
+
+    setupPagination();
+}
+
+// Create pagination buttons
+function setupPagination(){
+
+    const pageCount =
+        Math.ceil(users.length / rowsPerPage);
+
+    const pagination =
+        document.getElementById("pagination");
+
+    pagination.innerHTML = "";
+
+    for(let i = 1; i <= pageCount; i++){
+
+        const btn =
+            document.createElement("button");
+
+        btn.innerText = i;
+
+        if(i === currentPage){
+            btn.classList.add("active");
+        }
+
+        btn.addEventListener("click", () => {
+            displayTable(i);
+        });
+
+        pagination.appendChild(btn);
+    }
+}
+
+// Initialize
+displayTable(1);
+
+</script>
+
+</body>
+</html>

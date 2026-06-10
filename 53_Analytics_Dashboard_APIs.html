@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Analytics Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:20px;
+  }
+
+  h1{
+    margin-bottom:20px;
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+  }
+
+  .card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .card h2{
+    margin:0;
+    color:#2563eb;
+  }
+
+  .chart-box{
+    background:white;
+    margin-top:20px;
+    padding:20px;
+    border-radius:10px;
+  }
+
+  @media(max-width:768px){
+
+    .cards{
+      grid-template-columns:1fr;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<h1>Analytics Dashboard</h1>
+
+<div class="cards">
+
+  <div class="card">
+    <p>Total Users</p>
+    <h2 id="users">0</h2>
+  </div>
+
+  <div class="card">
+    <p>Active Users</p>
+    <h2 id="active">0</h2>
+  </div>
+
+  <div class="card">
+    <p>Total Sales</p>
+    <h2 id="sales">$0</h2>
+  </div>
+
+  <div class="card">
+    <p>Orders</p>
+    <h2 id="orders">0</h2>
+  </div>
+
+</div>
+
+<div class="chart-box">
+
+  <canvas id="salesChart"></canvas>
+
+</div>
+
+<script>
+
+async function loadAnalytics(){
+
+  const res = await fetch(
+    "http://localhost:5000/analytics"
+  );
+
+  const data = await res.json();
+
+  // KPI Cards
+  document.getElementById("users")
+    .innerText = data.totalUsers;
+
+  document.getElementById("active")
+    .innerText = data.activeUsers;
+
+  document.getElementById("sales")
+    .innerText = "$" + data.totalSales;
+
+  document.getElementById("orders")
+    .innerText = data.orders;
+
+  // Chart
+  const ctx =
+    document.getElementById("salesChart");
+
+  new Chart(ctx, {
+
+    type: "line",
+
+    data: {
+
+      labels: data.labels,
+
+      datasets: [{
+        label: "Revenue",
+        data: data.revenueByMonth,
+        borderColor: "#2563eb",
+        backgroundColor: "rgba(37,99,235,0.2)",
+        fill: true,
+        tension: 0.4
+      }]
+    }
+  });
+}
+
+loadAnalytics();
+
+</script>
+
+</body>
+</html>

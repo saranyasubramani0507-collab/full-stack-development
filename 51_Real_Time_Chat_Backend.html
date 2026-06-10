@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Real-Time Chat</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    display:flex;
+    justify-content:center;
+    padding-top:40px;
+  }
+
+  .chat-box{
+    width:400px;
+    background:white;
+    border-radius:10px;
+    padding:20px;
+  }
+
+  .messages{
+    height:300px;
+    overflow-y:auto;
+    border:1px solid #ddd;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:8px;
+    background:#fafafa;
+  }
+
+  .message{
+    background:#e2e8f0;
+    padding:8px;
+    margin-bottom:8px;
+    border-radius:8px;
+  }
+
+  input{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+  }
+
+  button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+  }
+
+  small{
+    color:gray;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="chat-box">
+
+  <h2>Real-Time Chat</h2>
+
+  <div class="messages" id="messages"></div>
+
+  <input
+    type="text"
+    id="username"
+    placeholder="Your name"
+  >
+
+  <input
+    type="text"
+    id="messageInput"
+    placeholder="Type message..."
+  >
+
+  <button onclick="sendMessage()">
+    Send Message
+  </button>
+
+</div>
+
+<!-- Socket.io client -->
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+<script>
+
+// Connect socket
+const socket = io("http://localhost:5000");
+
+// Receive messages
+socket.on("message", (data) => {
+
+  const messages =
+    document.getElementById("messages");
+
+  messages.innerHTML += `
+    <div class="message">
+      <strong>${data.user}</strong><br>
+      ${data.text}<br>
+      <small>${data.time}</small>
+    </div>
+  `;
+
+  messages.scrollTop =
+    messages.scrollHeight;
+});
+
+// Send message
+function sendMessage(){
+
+  const user =
+    document.getElementById("username").value;
+
+  const text =
+    document.getElementById("messageInput").value;
+
+  if(!user || !text){
+    alert("Enter name and message");
+    return;
+  }
+
+  socket.emit("chatMessage", {
+    user,
+    text
+  });
+
+  document.getElementById("messageInput").value = "";
+}
+
+</script>
+
+</body>
+</html>

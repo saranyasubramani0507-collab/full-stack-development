@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<me<!ta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel Export Module</title>
+
+<!-- SheetJS Library -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<style>
+    body{
+        font-family:Arial, sans-serif;
+        background:#f3f4f6;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        margin:0;
+    }
+
+    .container{
+        width:650px;
+        background:white;
+        padding:25px;
+        border-radius:12px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2{
+        text-align:center;
+        color:#16a34a;
+        margin-bottom:20px;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+        margin-bottom:20px;
+    }
+
+    table th,
+    table td{
+        border:1px solid #ddd;
+        padding:10px;
+        text-align:center;
+    }
+
+    table th{
+        background:#16a34a;
+        color:white;
+    }
+
+    input{
+        width:95%;
+        padding:8px;
+        border:1px solid #ccc;
+        border-radius:6px;
+    }
+
+    button{
+        padding:10px 15px;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+        font-size:15px;
+        margin-right:10px;
+    }
+
+    .add-btn{
+        background:#2563eb;
+        color:white;
+    }
+
+    .export-btn{
+        background:#16a34a;
+        color:white;
+    }
+
+    button:hover{
+        opacity:0.9;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Excel Export Module</h2>
+
+    <table id="dataTable">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody"></tbody>
+
+    </table>
+
+    <button class="add-btn"
+            onclick="addRow()">
+        Add Row
+    </button>
+
+    <button class="export-btn"
+            onclick="exportExcel()">
+        Export Excel
+    </button>
+
+</div>
+
+<script>
+
+// Add new row
+function addRow(){
+
+    const tbody =
+        document.getElementById("tableBody");
+
+    const row =
+        document.createElement("tr");
+
+    row.innerHTML = `
+        <td>
+            <input type="text"
+                   placeholder="Name">
+        </td>
+
+        <td>
+            <input type="email"
+                   placeholder="Email">
+        </td>
+
+        <td>
+            <input type="text"
+                   placeholder="Country">
+        </td>
+    `;
+
+    tbody.appendChild(row);
+}
+
+// Export Excel
+function exportExcel(){
+
+    const rows =
+        document.querySelectorAll("#tableBody tr");
+
+    let data = [];
+
+    // Headers
+    data.push([
+        "Name",
+        "Email",
+        "Country"
+    ]);
+
+    // Table rows
+    rows.forEach(row => {
+
+        const inputs =
+            row.querySelectorAll("input");
+
+        data.push([
+            inputs[0].value,
+            inputs[1].value,
+            inputs[2].value
+        ]);
+    });
+
+    // Create worksheet
+    const ws =
+        XLSX.utils.aoa_to_sheet(data);
+
+    // Create workbook
+    const wb =
+        XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(
+        wb,
+        ws,
+        "Users"
+    );
+
+    // Download Excel file
+    XLSX.writeFile(
+        wb,
+        "users-data.xlsx"
+    );
+}
+
+// Add default row
+addRow();
+
+</script>
+
+</body>
+</html>

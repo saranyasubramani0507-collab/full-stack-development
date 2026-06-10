@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Socket.IO Communication Demo</title>
+
+<style>
+    body{
+        font-family:Arial, sans-serif;
+        background:#f3f4f6;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+    }
+
+    .chat-container{
+        width:400px;
+        background:white;
+        padding:20px;
+        border-radius:12px;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2{
+        text-align:center;
+        margin-bottom:15px;
+    }
+
+    #messages{
+        height:300px;
+        overflow-y:auto;
+        border:1px solid #ddd;
+        padding:10px;
+        border-radius:8px;
+        background:#fafafa;
+        margin-bottom:10px;
+    }
+
+    .message{
+        background:#e0f2fe;
+        padding:8px;
+        margin-bottom:8px;
+        border-radius:8px;
+    }
+
+    input{
+        width:100%;
+        padding:10px;
+        margin:5px 0;
+        border:1px solid #ccc;
+        border-radius:6px;
+    }
+
+    button{
+        width:100%;
+        padding:10px;
+        background:#2563eb;
+        color:white;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+        font-size:16px;
+    }
+
+    button:hover{
+        background:#1d4ed8;
+    }
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+
+    <h2>Socket.IO Chat</h2>
+
+    <div id="messages"></div>
+
+    <input type="text"
+           id="username"
+           placeholder="Enter your name">
+
+    <input type="text"
+           id="message"
+           placeholder="Type a message">
+
+    <button onclick="sendMessage()">
+        Send Message
+    </button>
+
+</div>
+
+<!-- Socket.IO Client -->
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+<script>
+
+// Connect to Socket.IO server
+const socket = io("http://localhost:5000");
+
+// Receive messages from server
+socket.on("chat-message", (data) => {
+
+    const messages =
+        document.getElementById("messages");
+
+    messages.innerHTML += `
+        <div class="message">
+            <strong>${data.user}</strong>: 
+            ${data.text}
+        </div>
+    `;
+
+    // Auto-scroll
+    messages.scrollTop =
+        messages.scrollHeight;
+});
+
+// Send message
+function sendMessage(){
+
+    const username =
+        document.getElementById("username").value;
+
+    const message =
+        document.getElementById("message").value;
+
+    if(!username || !message){
+        alert("Please enter username and message");
+        return;
+    }
+
+    // Emit message to server
+    socket.emit("chat-message", {
+        user: username,
+        text: message
+    });
+
+    // Clear input
+    document.getElementById("message").value = "";
+}
+
+</script>
+
+</body>
+</html>

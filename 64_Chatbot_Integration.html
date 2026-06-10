@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #chatbox {
+            width: 350px;
+            height: 400px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .user {
+            color: blue;
+            margin: 5px 0;
+        }
+
+        .bot {
+            color: green;
+            margin: 5px 0;
+        }
+
+        input {
+            width: 250px;
+            padding: 8px;
+        }
+
+        button {
+            padding: 8px 12px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Simple Chatbot</h2>
+
+<div id="chatbox"></div>
+
+<input type="text" id="userInput" placeholder="Type a message">
+<button onclick="sendMessage()">Send</button>
+
+<script>
+function sendMessage() {
+    let input = document.getElementById("userInput");
+    let message = input.value.trim();
+
+    if (message === "") return;
+
+    let chatbox = document.getElementById("chatbox");
+
+    chatbox.innerHTML += `<div class="user"><b>You:</b> ${message}</div>`;
+
+    let response = getBotResponse(message);
+
+    chatbox.innerHTML += `<div class="bot"><b>Bot:</b> ${response}</div>`;
+
+    input.value = "";
+    chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+function getBotResponse(message) {
+    message = message.toLowerCase();
+
+    if (message.includes("hello")) {
+        return "Hello! How can I help you?";
+    } else if (message.includes("html")) {
+        return "HTML is used to create web pages.";
+    } else if (message.includes("bye")) {
+        return "Goodbye!";
+    } else {
+        return "Sorry, I don't understand.";
+    }
+}
+</script>
+
+</body>
+</html>

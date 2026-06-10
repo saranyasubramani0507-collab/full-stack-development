@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Search & Filter API</title>
+
+<style>
+  body{
+    font-family:Arial;
+    background:#f1f5f9;
+    padding:30px;
+  }
+
+  .container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+  }
+
+  h2{
+    text-align:center;
+  }
+
+  .filters{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-bottom:20px;
+  }
+
+  input, select{
+    padding:10px;
+  }
+
+  button{
+    padding:10px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+  }
+
+  table th,
+  table td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+  }
+
+  table th{
+    background:#2563eb;
+    color:white;
+  }
+
+  @media(max-width:768px){
+
+    .filters{
+      grid-template-columns:1fr;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h2>Search & Filter Products</h2>
+
+  <div class="filters">
+
+    <input
+      type="text"
+      id="search"
+      placeholder="Search product"
+    >
+
+    <select id="category">
+      <option value="">All Categories</option>
+      <option value="Mobile">Mobile</option>
+      <option value="Laptop">Laptop</option>
+      <option value="Accessories">Accessories</option>
+    </select>
+
+    <input
+      type="number"
+      id="minPrice"
+      placeholder="Min Price"
+    >
+
+    <input
+      type="number"
+      id="maxPrice"
+      placeholder="Max Price"
+    >
+
+  </div>
+
+  <button onclick="loadProducts()">
+    Apply Filters
+  </button>
+
+  <br><br>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price ($)</th>
+      </tr>
+    </thead>
+
+    <tbody id="productTable"></tbody>
+
+  </table>
+
+</div>
+
+<script>
+
+async function loadProducts(){
+
+  const search =
+    document.getElementById("search").value;
+
+  const category =
+    document.getElementById("category").value;
+
+  const minPrice =
+    document.getElementById("minPrice").value;
+
+  const maxPrice =
+    document.getElementById("maxPrice").value;
+
+  // Build query params
+  const params = new URLSearchParams({
+
+    search,
+    category,
+    minPrice,
+    maxPrice
+  });
+
+  // Fetch API
+  const res = await fetch(
+    `http://localhost:5000/products?${params}`
+  );
+
+  const data = await res.json();
+
+  // Render products
+  document.getElementById("productTable")
+    .innerHTML =
+      data.data.map(product => `
+        <tr>
+          <td>${product.id}</td>
+          <td>${product.name}</td>
+          <td>${product.category}</td>
+          <td>$${product.price}</td>
+        </tr>
+      `).join("");
+}
+
+// Auto load all products
+loadProducts();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenAI Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>OpenAI Integration Example</h2>
+
+    <textarea id="prompt" placeholder="Ask something..."></textarea>
+    <br>
+    <button onclick="sendMessage()">Send</button>
+
+    <div id="result"></div>
+
+    <script>
+        async function sendMessage() {
+            const prompt = document.getElementById("prompt").value;
+            const result = document.getElementById("result");
+
+            result.innerHTML = "Loading...";
+
+            try {
+                const response = await fetch("/api/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ prompt })
+                });
+
+                const data = await response.json();
+                result.innerHTML = data.reply;
+            } catch (error) {
+                result.innerHTML = "Error: " + error.message;
+            }
+        }
+    </script>
+
+</body>
+</html>
