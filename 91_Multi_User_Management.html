@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi User Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .flow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Multi User Management</h1>
+
+    <p>
+        Multi User Management is a system that allows multiple users to access
+        an application with different roles, permissions, and access levels.
+    </p>
+
+    <h2>User Management Flow</h2>
+
+    <div class="flow">
+        <div class="box">User Login</div>
+        <div class="box">Authentication</div>
+        <div class="box">Role Check</div>
+        <div class="box">Permission Control</div>
+        <div class="box">Access Resources</div>
+    </div>
+
+    <h2>User Roles</h2>
+
+    <table>
+        <tr>
+            <th>Role</th>
+            <th>Permissions</th>
+        </tr>
+        <tr>
+            <td>Admin</td>
+            <td>Full access to system features</td>
+        </tr>
+        <tr>
+            <td>Manager</td>
+            <td>Manage users and reports</td>
+        </tr>
+        <tr>
+            <td>Editor</td>
+            <td>Create and update content</td>
+        </tr>
+        <tr>
+            <td>User</td>
+            <td>View and use application features</td>
+        </tr>
+    </table>
+
+    <h2>Database Structure Example</h2>
+
+    <pre>
+Users Table
+
+id
+name
+email
+password
+role
+created_at
+    </pre>
+
+    <h2>Node.js Role Check Example</h2>
+
+    <pre>
+function checkAdmin(req, res, next) {
+    if (req.user.role === "Admin") {
+        next();
+    } else {
+        res.status(403).send("Access Denied");
+    }
+}
+    </pre>
+
+    <h2>Features</h2>
+
+    <ul>
+        <li>User registration and login.</li>
+        <li>Role-based access control (RBAC).</li>
+        <li>User profile management.</li>
+        <li>Password reset functionality.</li>
+        <li>Permission-based resource access.</li>
+        <li>Activity tracking and auditing.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>Improves security.</li>
+        <li>Controls access to sensitive data.</li>
+        <li>Supports team collaboration.</li>
+        <li>Provides better user organization.</li>
+        <li>Scales easily with growing applications.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

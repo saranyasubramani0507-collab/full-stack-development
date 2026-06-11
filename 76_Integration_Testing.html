@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integration Testing Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+    color:white;
+    padding:30px;
+}
+
+.container{
+    max-width:1300px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:42px;
+}
+
+.header p{
+    color:#cbd5e1;
+    margin-top:10px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.card h3{
+    color:#38bdf8;
+}
+
+.card p{
+    font-size:32px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.panel{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:25px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#22c55e;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:15px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    text-align:left;
+}
+
+th{
+    color:#38bdf8;
+}
+
+.pass{
+    color:#22c55e;
+    font-weight:bold;
+}
+
+.fail{
+    color:#ef4444;
+    font-weight:bold;
+}
+
+.progress{
+    width:100%;
+    height:28px;
+    background:#334155;
+    border-radius:20px;
+    margin-top:25px;
+    overflow:hidden;
+}
+
+.bar{
+    width:0%;
+    height:100%;
+    background:#22c55e;
+    text-align:center;
+    line-height:28px;
+    font-weight:bold;
+    transition:1s;
+}
+
+.architecture{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.module{
+    background:#1e293b;
+    padding:15px 25px;
+    border-radius:12px;
+    border:1px solid #475569;
+}
+
+.arrow{
+    font-size:24px;
+    align-self:center;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🔗 Integration Testing Dashboard</h1>
+        <p>Testing Communication Between System Components</p>
+    </div>
+
+    <div class="architecture">
+        <div class="module">Frontend</div>
+        <div class="arrow">➡</div>
+        <div class="module">API Server</div>
+        <div class="arrow">➡</div>
+        <div class="module">Database</div>
+        <div class="arrow">➡</div>
+        <div class="module">Payment Gateway</div>
+    </div>
+
+    <div class="stats">
+
+        <div class="card">
+            <h3>Total Tests</h3>
+            <p id="total">6</p>
+        </div>
+
+        <div class="card">
+            <h3>Passed</h3>
+            <p id="passed">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Failed</h3>
+            <p id="failed">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Success Rate</h3>
+            <p id="rate">0%</p>
+        </div>
+
+    </div>
+
+    <div class="panel">
+
+        <button onclick="runIntegrationTests()">
+            🚀 Run Integration Tests
+        </button>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Integration Test</th>
+                    <th>Modules</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="results">
+
+                <tr>
+                    <td>User Login Flow</td>
+                    <td>Frontend ↔ API ↔ Database</td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>User Registration</td>
+                    <td>Frontend ↔ API ↔ Database</td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>JWT Authentication</td>
+                    <td>Frontend ↔ Auth Service</td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>Product Fetching</td>
+                    <td>Frontend ↔ API</td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>Payment Processing</td>
+                    <td>API ↔ Payment Gateway</td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>Email Notification</td>
+                    <td>API ↔ Email Service</td>
+                    <td>-</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div class="progress">
+            <div class="bar" id="progressBar">0%</div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function runIntegrationTests(){
+
+    const rows =
+    document.querySelectorAll("#results tr");
+
+    let passed = 0;
+    let failed = 0;
+
+    rows.forEach(row => {
+
+        const success =
+        Math.random() > 0.15;
+
+        const statusCell =
+        row.cells[2];
+
+        if(success){
+
+            statusCell.innerHTML =
+            '<span class="pass">PASS</span>';
+
+            passed++;
+
+        }else{
+
+            statusCell.innerHTML =
+            '<span class="fail">FAIL</span>';
+
+            failed++;
+        }
+
+    });
+
+    const total = rows.length;
+
+    const percentage =
+    Math.round((passed/total)*100);
+
+    document.getElementById("passed")
+    .innerHTML = passed;
+
+    document.getElementById("failed")
+    .innerHTML = failed;
+
+    document.getElementById("rate")
+    .innerHTML = percentage + "%";
+
+    document.getElementById("progressBar")
+    .style.width = percentage + "%";
+
+    document.getElementById("progressBar")
+    .innerHTML = percentage + "%";
+}
+
+</script>
+
+</body>
+</html>

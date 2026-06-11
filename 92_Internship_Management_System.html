@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .workflow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Internship Management System</h1>
+
+    <p>
+        An Internship Management System helps organizations manage internship
+        programs, student applications, mentor assignments, project tracking,
+        evaluations, and certificate generation.
+    </p>
+
+    <h2>System Workflow</h2>
+
+    <div class="workflow">
+        <div class="box">Student Registration</div>
+        <div class="box">Apply Internship</div>
+        <div class="box">Mentor Assignment</div>
+        <div class="box">Project Tracking</div>
+        <div class="box">Evaluation</div>
+        <div class="box">Certificate</div>
+    </div>
+
+    <h2>Key Modules</h2>
+
+    <table>
+        <tr>
+            <th>Module</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Student Management</td>
+            <td>Manage intern profiles and details.</td>
+        </tr>
+        <tr>
+            <td>Application Management</td>
+            <td>Track internship applications.</td>
+        </tr>
+        <tr>
+            <td>Mentor Management</td>
+            <td>Assign mentors to interns.</td>
+        </tr>
+        <tr>
+            <td>Project Tracking</td>
+            <td>Monitor assigned tasks and progress.</td>
+        </tr>
+        <tr>
+            <td>Evaluation System</td>
+            <td>Assess intern performance.</td>
+        </tr>
+        <tr>
+            <td>Certificate Management</td>
+            <td>Generate internship certificates.</td>
+        </tr>
+    </table>
+
+    <h2>Database Tables</h2>
+
+    <pre>
+Students
+---------
+id
+name
+email
+college
+
+Internships
+------------
+id
+title
+duration
+
+Applications
+-------------
+id
+student_id
+internship_id
+status
+
+Mentors
+--------
+id
+name
+department
+    </pre>
+
+    <h2>Sample JavaScript Function</h2>
+
+    <pre>
+function submitApplication() {
+    alert("Internship Application Submitted Successfully!");
+}
+    </pre>
+
+    <h2>Features</h2>
+
+    <ul>
+        <li>Student registration and login.</li>
+        <li>Internship application tracking.</li>
+        <li>Mentor assignment.</li>
+        <li>Attendance monitoring.</li>
+        <li>Project submission.</li>
+        <li>Performance evaluation.</li>
+        <li>Certificate generation.</li>
+        <li>Admin dashboard and reports.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>Automates internship management.</li>
+        <li>Improves communication between mentors and interns.</li>
+        <li>Tracks progress efficiently.</li>
+        <li>Reduces paperwork.</li>
+        <li>Provides accurate reporting and analytics.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

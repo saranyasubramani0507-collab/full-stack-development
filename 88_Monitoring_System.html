@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .diagram {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Monitoring System</h1>
+
+    <p>
+        A Monitoring System helps track the health, performance, availability,
+        and reliability of applications, servers, databases, and services in real time.
+    </p>
+
+    <h2>Monitoring Architecture</h2>
+
+    <div class="diagram">
+        <div class="box">Application</div>
+        <div class="box">Metrics Collector</div>
+        <div class="box">Monitoring Server</div>
+        <div class="box">Dashboard</div>
+        <div class="box">Alerts</div>
+    </div>
+
+    <h2>Key Metrics</h2>
+
+    <table>
+        <tr>
+            <th>Metric</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>CPU Usage</td>
+            <td>Measures processor utilization.</td>
+        </tr>
+        <tr>
+            <td>Memory Usage</td>
+            <td>Tracks RAM consumption.</td>
+        </tr>
+        <tr>
+            <td>Disk Usage</td>
+            <td>Monitors storage capacity.</td>
+        </tr>
+        <tr>
+            <td>Response Time</td>
+            <td>Measures application speed.</td>
+        </tr>
+        <tr>
+            <td>Error Rate</td>
+            <td>Tracks failed requests.</td>
+        </tr>
+    </table>
+
+    <h2>Sample Monitoring Configuration</h2>
+
+    <pre>
+{
+  "application": "MyApp",
+  "cpuThreshold": 80,
+  "memoryThreshold": 75,
+  "diskThreshold": 90,
+  "alertEmail": "admin@example.com"
+}
+    </pre>
+
+    <h2>Popular Monitoring Tools</h2>
+
+    <ul>
+        <li>Prometheus</li>
+        <li>Grafana</li>
+        <li>Datadog</li>
+        <li>Nagios</li>
+        <li>Zabbix</li>
+        <li>New Relic</li>
+        <li>Amazon CloudWatch</li>
+    </ul>
+
+    <h2>Node.js Monitoring Example</h2>
+
+    <pre>
+const os = require('os');
+
+console.log("CPU Load:", os.loadavg());
+console.log("Free Memory:", os.freemem());
+console.log("Total Memory:", os.totalmem());
+    </pre>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>Detect issues early.</li>
+        <li>Improve system reliability.</li>
+        <li>Reduce downtime.</li>
+        <li>Optimize performance.</li>
+        <li>Enable proactive maintenance.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

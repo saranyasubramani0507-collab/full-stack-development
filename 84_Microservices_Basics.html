@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microservices Basics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .architecture {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .service {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            min-width: 150px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Microservices Basics</h1>
+
+    <p>
+        Microservices Architecture is a software design approach where an
+        application is built as a collection of small, independent services.
+        Each service handles a specific business function and communicates
+        with other services through APIs.
+    </p>
+
+    <h2>Microservices Architecture</h2>
+
+    <div class="architecture">
+        <div class="service">API Gateway</div>
+        <div class="service">User Service</div>
+        <div class="service">Product Service</div>
+        <div class="service">Order Service</div>
+        <div class="service">Payment Service</div>
+        <div class="service">Notification Service</div>
+    </div>
+
+    <h2>Key Features</h2>
+    <ul>
+        <li>Independent deployment of services.</li>
+        <li>Each service has its own database.</li>
+        <li>Improved scalability and flexibility.</li>
+        <li>Fault isolation between services.</li>
+        <li>Technology independence.</li>
+    </ul>
+
+    <h2>Example API Endpoints</h2>
+
+    <pre>
+GET    /api/users
+POST   /api/users
+
+GET    /api/products
+POST   /api/products
+
+GET    /api/orders
+POST   /api/orders
+
+POST   /api/payments
+    </pre>
+
+    <h2>Advantages</h2>
+    <ul>
+        <li>Easy to scale individual services.</li>
+        <li>Faster development cycles.</li>
+        <li>Better maintainability.</li>
+        <li>Supports large applications.</li>
+    </ul>
+
+    <h2>Challenges</h2>
+    <ul>
+        <li>More complex deployment.</li>
+        <li>Network communication overhead.</li>
+        <li>Distributed system monitoring.</li>
+        <li>Data consistency management.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

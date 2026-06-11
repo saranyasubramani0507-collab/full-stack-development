@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environment Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .env-box {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Environment Variables</h1>
+
+    <p>
+        Environment Variables are configuration values stored outside the
+        application code. They help manage sensitive information such as
+        API keys, database credentials, and application settings securely.
+    </p>
+
+    <div class="env-box">
+        Application → Reads Environment Variables → Uses Configuration
+    </div>
+
+    <h2>Example .env File</h2>
+
+    <pre>
+PORT=3000
+DB_HOST=localhost
+DB_USER=admin
+DB_PASSWORD=secret123
+API_KEY=your_api_key
+JWT_SECRET=my_secret_key
+    </pre>
+
+    <h2>Node.js Example</h2>
+
+    <pre>
+require('dotenv').config();
+
+console.log("Server Port:", process.env.PORT);
+console.log("Database Host:", process.env.DB_HOST);
+    </pre>
+
+    <h2>Installing dotenv</h2>
+
+    <pre>
+npm install dotenv
+    </pre>
+
+    <h2>Common Environment Variables</h2>
+
+    <table>
+        <tr>
+            <th>Variable</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>PORT</td>
+            <td>Application port number</td>
+        </tr>
+        <tr>
+            <td>DB_HOST</td>
+            <td>Database server address</td>
+        </tr>
+        <tr>
+            <td>DB_USER</td>
+            <td>Database username</td>
+        </tr>
+        <tr>
+            <td>DB_PASSWORD</td>
+            <td>Database password</td>
+        </tr>
+        <tr>
+            <td>API_KEY</td>
+            <td>Third-party API access key</td>
+        </tr>
+        <tr>
+            <td>JWT_SECRET</td>
+            <td>Authentication token secret</td>
+        </tr>
+    </table>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>Improves security by separating secrets from code.</li>
+        <li>Supports multiple environments (Development, Testing, Production).</li>
+        <li>Makes configuration easier to manage.</li>
+        <li>Reduces hard-coded values.</li>
+        <li>Simplifies deployment and maintenance.</li>
+    </ul>
+
+    <h2>Best Practices</h2>
+
+    <ul>
+        <li>Never commit .env files to public repositories.</li>
+        <li>Use strong secret keys and passwords.</li>
+        <li>Store production secrets securely.</li>
+        <li>Validate required environment variables at startup.</li>
+        <li>Use different configurations for each environment.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

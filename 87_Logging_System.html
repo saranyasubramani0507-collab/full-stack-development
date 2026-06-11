@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logging System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .flow {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Logging System</h1>
+
+    <p>
+        A Logging System records application events, errors, warnings,
+        and user activities. Logs help developers monitor applications,
+        troubleshoot issues, and improve system reliability.
+    </p>
+
+    <h2>Logging Workflow</h2>
+
+    <div class="flow">
+        <div class="box">Application</div>
+        <div class="box">Logger</div>
+        <div class="box">Log File</div>
+        <div class="box">Monitoring Tool</div>
+    </div>
+
+    <h2>Log Levels</h2>
+
+    <table>
+        <tr>
+            <th>Level</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>INFO</td>
+            <td>General application information.</td>
+        </tr>
+        <tr>
+            <td>DEBUG</td>
+            <td>Detailed debugging information.</td>
+        </tr>
+        <tr>
+            <td>WARN</td>
+            <td>Potential issues or warnings.</td>
+        </tr>
+        <tr>
+            <td>ERROR</td>
+            <td>Application errors that need attention.</td>
+        </tr>
+        <tr>
+            <td>FATAL</td>
+            <td>Critical system failures.</td>
+        </tr>
+    </table>
+
+    <h2>Sample Log Output</h2>
+
+    <pre>
+2026-06-05 10:00:15 INFO  User logged in
+2026-06-05 10:05:30 WARN  High memory usage detected
+2026-06-05 10:08:12 ERROR Database connection failed
+    </pre>
+
+    <h2>Node.js Logging Example</h2>
+
+    <pre>
+const fs = require('fs');
+
+function log(message) {
+    const entry = `${new Date().toISOString()} - ${message}\n`;
+    fs.appendFileSync('app.log', entry);
+}
+
+log('Application started');
+    </pre>
+
+    <h2>Popular Logging Tools</h2>
+
+    <ul>
+        <li>Winston (Node.js)</li>
+        <li>Log4j (Java)</li>
+        <li>Serilog (.NET)</li>
+        <li>Python Logging Module</li>
+        <li>ELK Stack (Elasticsearch, Logstash, Kibana)</li>
+        <li>Grafana Loki</li>
+    </ul>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>Tracks application activity.</li>
+        <li>Helps identify errors quickly.</li>
+        <li>Improves system monitoring.</li>
+        <li>Supports auditing and compliance.</li>
+        <li>Provides performance insights.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

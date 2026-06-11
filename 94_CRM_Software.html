@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Software</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .workflow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #217dbb;
+        }
+    </style>
+
+    <script>
+        function addCustomer() {
+            alert("Customer Added Successfully!");
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Customer Relationship Management (CRM) Software</h1>
+
+    <p>
+        CRM Software helps businesses manage customer interactions,
+        sales processes, support activities, marketing campaigns,
+        and customer data in one centralized system.
+    </p>
+
+    <h2>CRM Workflow</h2>
+
+    <div class="workflow">
+        <div class="box">Lead Capture</div>
+        <div class="box">Customer Database</div>
+        <div class="box">Sales Pipeline</div>
+        <div class="box">Communication</div>
+        <div class="box">Support</div>
+        <div class="box">Reports</div>
+    </div>
+
+    <h2>Core Modules</h2>
+
+    <table>
+        <tr>
+            <th>Module</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Lead Management</td>
+            <td>Track and manage potential customers.</td>
+        </tr>
+        <tr>
+            <td>Customer Management</td>
+            <td>Store customer information and history.</td>
+        </tr>
+        <tr>
+            <td>Sales Management</td>
+            <td>Monitor opportunities and deals.</td>
+        </tr>
+        <tr>
+            <td>Support Management</td>
+            <td>Handle customer issues and tickets.</td>
+        </tr>
+        <tr>
+            <td>Analytics & Reports</td>
+            <td>Generate sales and performance reports.</td>
+        </tr>
+    </table>
+
+    <h2>Database Structure</h2>
+
+    <pre>
+Customers
+---------
+id
+name
+email
+phone
+
+Leads
+-----
+id
+customer_id
+source
+status
+
+Sales
+-----
+id
+customer_id
+amount
+stage
+
+SupportTickets
+--------------
+id
+customer_id
+issue
+status
+    </pre>
+
+    <h2>Sample Action</h2>
+
+    <button class="btn" onclick="addCustomer()">
+        Add New Customer
+    </button>
+
+    <h2>Key Features</h2>
+
+    <ul>
+        <li>Customer database management.</li>
+        <li>Lead and opportunity tracking.</li>
+        <li>Sales pipeline management.</li>
+        <li>Email and communication tracking.</li>
+        <li>Customer support ticket system.</li>
+        <li>Reports and dashboards.</li>
+        <li>Role-based access control.</li>
+        <li>Mobile-friendly access.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>Improves customer relationships.</li>
+        <li>Increases sales efficiency.</li>
+        <li>Enhances customer retention.</li>
+        <li>Centralizes customer information.</li>
+        <li>Provides business insights through analytics.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPS Deployment Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 900px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        code {
+            background: #eee;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        pre {
+            background: #272822;
+            color: white;
+            padding: 15px;
+            overflow-x: auto;
+            border-radius: 5px;
+        }
+        .step {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>VPS Deployment Guide</h1>
+
+    <div class="step">
+        <h2>Step 1: Connect to VPS</h2>
+        <p>Use SSH to connect to your VPS server:</p>
+        <pre>ssh username@your-server-ip</pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 2: Update Server</h2>
+        <pre>
+sudo apt update
+sudo apt upgrade -y
+        </pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 3: Install Nginx</h2>
+        <pre>
+sudo apt install nginx -y
+sudo systemctl start nginx
+sudo systemctl enable nginx
+        </pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 4: Deploy Website Files</h2>
+        <p>Upload your project files to:</p>
+        <pre>/var/www/html</pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 5: Configure Nginx</h2>
+        <pre>
+server {
+    listen 80;
+    server_name yourdomain.com;
+
+    root /var/www/html;
+    index index.html;
+}
+        </pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 6: Restart Nginx</h2>
+        <pre>
+sudo nginx -t
+sudo systemctl restart nginx
+        </pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 7: Enable HTTPS (Optional)</h2>
+        <pre>
+sudo apt install certbot python3-certbot-nginx -y
+sudo certbot --nginx
+        </pre>
+    </div>
+
+    <h2>Deployment Complete!</h2>
+    <p>Your website should now be accessible through your VPS IP address or domain name.</p>
+</div>
+
+</body>
+</html>

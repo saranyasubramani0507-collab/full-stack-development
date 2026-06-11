@@ -1,0 +1,293 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Docker Containerization Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#334155);
+    min-height:100vh;
+    color:white;
+    padding:30px;
+}
+
+.container{
+    max-width:1300px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:42px;
+}
+
+.header p{
+    color:#cbd5e1;
+    margin-top:10px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+}
+
+.card h3{
+    color:#38bdf8;
+}
+
+.card p{
+    font-size:32px;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.docker-panel{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+    border-radius:20px;
+    padding:25px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    margin-bottom:20px;
+    background:#2496ED;
+    color:white;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.architecture{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.box{
+    background:#1e293b;
+    padding:15px 25px;
+    border-radius:12px;
+    border:1px solid #475569;
+}
+
+.arrow{
+    font-size:25px;
+    align-self:center;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:15px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    text-align:left;
+}
+
+th{
+    color:#38bdf8;
+}
+
+.running{
+    color:#22c55e;
+    font-weight:bold;
+}
+
+.stopped{
+    color:#ef4444;
+    font-weight:bold;
+}
+
+.progress{
+    width:100%;
+    height:28px;
+    background:#334155;
+    border-radius:20px;
+    margin-top:25px;
+    overflow:hidden;
+}
+
+.bar{
+    width:0%;
+    height:100%;
+    background:#2496ED;
+    line-height:28px;
+    text-align:center;
+    font-weight:bold;
+    transition:1s;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🐳 Docker Containerization</h1>
+        <p>Monitor Docker Containers & Images</p>
+    </div>
+
+    <div class="stats">
+
+        <div class="card">
+            <h3>Containers</h3>
+            <p id="containers">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Images</h3>
+            <p id="images">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Volumes</h3>
+            <p id="volumes">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Networks</h3>
+            <p id="networks">0</p>
+        </div>
+
+    </div>
+
+    <div class="docker-panel">
+
+        <button onclick="deployContainers()">
+            🚀 Deploy Docker Containers
+        </button>
+
+        <div class="architecture">
+
+            <div class="box">Frontend</div>
+            <div class="arrow">➡</div>
+
+            <div class="box">Docker Container</div>
+            <div class="arrow">➡</div>
+
+            <div class="box">Backend API</div>
+            <div class="arrow">➡</div>
+
+            <div class="box">Database</div>
+
+        </div>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Container</th>
+                    <th>Image</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="dockerTable">
+
+                <tr>
+                    <td>frontend-app</td>
+                    <td>nginx:latest</td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>backend-api</td>
+                    <td>node:20</td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>mysql-db</td>
+                    <td>mysql:8</td>
+                    <td>-</td>
+                </tr>
+
+                <tr>
+                    <td>redis-cache</td>
+                    <td>redis:latest</td>
+                    <td>-</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <div class="progress">
+            <div class="bar" id="progressBar">0%</div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function deployContainers(){
+
+    const rows =
+    document.querySelectorAll("#dockerTable tr");
+
+    let running = 0;
+
+    rows.forEach(row=>{
+
+        row.cells[2].innerHTML =
+        '<span class="running">Running</span>';
+
+        running++;
+    });
+
+    document.getElementById("containers").innerHTML = running;
+    document.getElementById("images").innerHTML = 4;
+    document.getElementById("volumes").innerHTML = 3;
+    document.getElementById("networks").innerHTML = 2;
+
+    const progress = 100;
+
+    document.getElementById("progressBar")
+    .style.width = progress + "%";
+
+    document.getElementById("progressBar")
+    .innerHTML = "Deployment Successful";
+}
+
+</script>
+
+</body>
+</html>

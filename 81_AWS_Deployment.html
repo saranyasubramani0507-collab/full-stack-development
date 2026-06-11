@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Deployment Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f6f9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #232f3e;
+        }
+
+        h2 {
+            color: #ff9900;
+        }
+
+        pre {
+            background: #232f3e;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .step {
+            margin-bottom: 25px;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>AWS Deployment Guide</h1>
+
+    <div class="step">
+        <h2>Step 1: Launch an EC2 Instance</h2>
+        <ul>
+            <li>Login to AWS Console</li>
+            <li>Navigate to EC2 Dashboard</li>
+            <li>Click "Launch Instance"</li>
+            <li>Select Amazon Linux or Ubuntu</li>
+            <li>Configure Security Group (Allow HTTP, HTTPS, SSH)</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <h2>Step 2: Connect to EC2</h2>
+        <pre>
+ssh -i my-key.pem ubuntu@your-public-ip
+        </pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 3: Update Server</h2>
+        <pre>
+sudo apt update
+sudo apt upgrade -y
+        </pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 4: Install Web Server</h2>
+        <pre>
+sudo apt install nginx -y
+sudo systemctl start nginx
+sudo systemctl enable nginx
+        </pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 5: Upload Website Files</h2>
+        <pre>
+sudo cp -r website/* /var/www/html/
+        </pre>
+    </div>
+
+    <div class="step">
+        <h2>Step 6: Verify Deployment</h2>
+        <p>Open your browser and visit:</p>
+        <pre>
+http://your-public-ip
+        </pre>
+    </div>
+
+    <div class="step">
+        <h2>Optional: Configure Domain & SSL</h2>
+        <pre>
+sudo apt install certbot python3-certbot-nginx -y
+sudo certbot --nginx
+        </pre>
+    </div>
+
+    <footer>
+        <p>AWS EC2 Deployment Tutorial Page</p>
+    </footer>
+</div>
+
+</body>
+</html>

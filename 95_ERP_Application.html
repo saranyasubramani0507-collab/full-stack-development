@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .workflow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #217dbb;
+        }
+    </style>
+
+    <script>
+        function generateReport() {
+            alert("ERP Report Generated Successfully!");
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Enterprise Resource Planning (ERP) Application</h1>
+
+    <p>
+        ERP (Enterprise Resource Planning) software integrates various business
+        processes such as Finance, Human Resources, Inventory, Sales,
+        Procurement, and Production into a single centralized system.
+    </p>
+
+    <h2>ERP Workflow</h2>
+
+    <div class="workflow">
+        <div class="box">HR</div>
+        <div class="box">Finance</div>
+        <div class="box">Inventory</div>
+        <div class="box">Sales</div>
+        <div class="box">Procurement</div>
+        <div class="box">Reports</div>
+    </div>
+
+    <h2>Core ERP Modules</h2>
+
+    <table>
+        <tr>
+            <th>Module</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Human Resources</td>
+            <td>Manage employees, payroll, and attendance.</td>
+        </tr>
+        <tr>
+            <td>Finance</td>
+            <td>Handle accounting, budgeting, and transactions.</td>
+        </tr>
+        <tr>
+            <td>Inventory</td>
+            <td>Track stock levels and warehouse operations.</td>
+        </tr>
+        <tr>
+            <td>Sales</td>
+            <td>Manage orders, customers, and invoices.</td>
+        </tr>
+        <tr>
+            <td>Procurement</td>
+            <td>Manage suppliers and purchasing activities.</td>
+        </tr>
+        <tr>
+            <td>Reporting</td>
+            <td>Generate business analytics and reports.</td>
+        </tr>
+    </table>
+
+    <h2>Database Structure</h2>
+
+    <pre>
+Employees
+---------
+id
+name
+department
+salary
+
+Products
+--------
+id
+name
+quantity
+price
+
+Orders
+------
+id
+customer_name
+total_amount
+
+Invoices
+--------
+id
+order_id
+status
+    </pre>
+
+    <h2>Sample Action</h2>
+
+    <button class="btn" onclick="generateReport()">
+        Generate ERP Report
+    </button>
+
+    <h2>Key Features</h2>
+
+    <ul>
+        <li>Centralized business management.</li>
+        <li>Employee and payroll management.</li>
+        <li>Inventory tracking.</li>
+        <li>Sales and purchase management.</li>
+        <li>Financial accounting.</li>
+        <li>Real-time reporting and analytics.</li>
+        <li>Role-based user access.</li>
+        <li>Workflow automation.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>Improves operational efficiency.</li>
+        <li>Reduces manual work.</li>
+        <li>Provides accurate business insights.</li>
+        <li>Enhances collaboration across departments.</li>
+        <li>Supports business growth and scalability.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>
