@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .workflow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #217dbb;
+        }
+
+        .booking-form {
+            margin-top: 20px;
+        }
+
+        .booking-form input,
+        .booking-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+
+    <script>
+        function bookRoom() {
+            alert("Hotel Room Booked Successfully!");
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Hotel Booking Application</h1>
+
+    <p>
+        A Hotel Booking Application allows users to search hotels,
+        view room availability, make reservations, process payments,
+        and manage bookings online.
+    </p>
+
+    <h2>Booking Workflow</h2>
+
+    <div class="workflow">
+        <div class="box">Search Hotel</div>
+        <div class="box">Select Room</div>
+        <div class="box">Enter Details</div>
+        <div class="box">Payment</div>
+        <div class="box">Booking Confirmation</div>
+    </div>
+
+    <h2>Core Modules</h2>
+
+    <table>
+        <tr>
+            <th>Module</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>User Management</td>
+            <td>Register and manage customer accounts.</td>
+        </tr>
+        <tr>
+            <td>Hotel Management</td>
+            <td>Manage hotel and room information.</td>
+        </tr>
+        <tr>
+            <td>Booking Management</td>
+            <td>Handle reservations and cancellations.</td>
+        </tr>
+        <tr>
+            <td>Payment Processing</td>
+            <td>Manage online payments securely.</td>
+        </tr>
+        <tr>
+            <td>Reporting</td>
+            <td>Generate booking and revenue reports.</td>
+        </tr>
+    </table>
+
+    <h2>Sample Booking Form</h2>
+
+    <div class="booking-form">
+        <input type="text" placeholder="Guest Name">
+        <input type="email" placeholder="Email Address">
+        <input type="date">
+        <input type="date">
+        
+        <select>
+            <option>Select Room Type</option>
+            <option>Single Room</option>
+            <option>Double Room</option>
+            <option>Suite</option>
+        </select>
+
+        <button class="btn" onclick="bookRoom()">
+            Book Now
+        </button>
+    </div>
+
+    <h2>Database Structure</h2>
+
+    <pre>
+Users
+-----
+id
+name
+email
+
+Hotels
+------
+id
+hotel_name
+location
+
+Rooms
+-----
+id
+hotel_id
+room_type
+price
+
+Bookings
+--------
+id
+user_id
+room_id
+check_in
+check_out
+status
+    </pre>
+
+    <h2>Key Features</h2>
+
+    <ul>
+        <li>Hotel and room search.</li>
+        <li>Real-time room availability.</li>
+        <li>Online booking and cancellation.</li>
+        <li>Secure payment integration.</li>
+        <li>Booking history management.</li>
+        <li>Email and SMS notifications.</li>
+        <li>Admin dashboard.</li>
+        <li>Customer reviews and ratings.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>Convenient online reservations.</li>
+        <li>Reduces manual booking efforts.</li>
+        <li>Improves customer experience.</li>
+        <li>Automates booking management.</li>
+        <li>Increases hotel operational efficiency.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

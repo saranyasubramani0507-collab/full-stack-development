@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #1565c0;
+        }
+
+        .workflow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: #1565c0;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background: #1565c0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #0d47a1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #1565c0;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+
+    <script>
+        function transferMoney() {
+            alert("Money Transfer Request Submitted Successfully!");
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Banking Application</h1>
+
+    <p>
+        A Banking Application enables customers to manage bank accounts,
+        transfer funds, pay bills, view transactions, and access financial
+        services through a secure digital platform.
+    </p>
+
+    <h2>Banking Workflow</h2>
+
+    <div class="workflow">
+        <div class="box">Login</div>
+        <div class="box">Account Access</div>
+        <div class="box">Transfer Funds</div>
+        <div class="box">Transaction Processing</div>
+        <div class="box">Confirmation</div>
+    </div>
+
+    <h2>Fund Transfer Form</h2>
+
+    <input type="text" placeholder="Sender Account Number">
+
+    <input type="text" placeholder="Receiver Account Number">
+
+    <input type="number" placeholder="Amount">
+
+    <button class="btn" onclick="transferMoney()">
+        Transfer Money
+    </button>
+
+    <h2>Core Modules</h2>
+
+    <table>
+        <tr>
+            <th>Module</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Customer Management</td>
+            <td>Manage customer accounts and profiles.</td>
+        </tr>
+        <tr>
+            <td>Account Management</td>
+            <td>Handle savings, current, and loan accounts.</td>
+        </tr>
+        <tr>
+            <td>Transaction Processing</td>
+            <td>Manage deposits, withdrawals, and transfers.</td>
+        </tr>
+        <tr>
+            <td>Bill Payments</td>
+            <td>Support utility and service payments.</td>
+        </tr>
+        <tr>
+            <td>Security</td>
+            <td>Authentication, authorization, and fraud protection.</td>
+        </tr>
+    </table>
+
+    <h2>Database Structure</h2>
+
+    <pre>
+Customers
+---------
+id
+name
+email
+phone
+
+Accounts
+--------
+id
+customer_id
+account_number
+balance
+
+Transactions
+------------
+id
+account_id
+amount
+type
+transaction_date
+
+Loans
+-----
+id
+customer_id
+loan_amount
+status
+    </pre>
+
+    <h2>Key Features</h2>
+
+    <ul>
+        <li>Secure customer login.</li>
+        <li>Account balance inquiry.</li>
+        <li>Fund transfers.</li>
+        <li>Transaction history.</li>
+        <li>Bill payment services.</li>
+        <li>Loan management.</li>
+        <li>Real-time notifications.</li>
+        <li>Multi-factor authentication.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>24/7 banking access.</li>
+        <li>Convenient online transactions.</li>
+        <li>Enhanced security and monitoring.</li>
+        <li>Reduced branch visits.</li>
+        <li>Improved customer experience.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

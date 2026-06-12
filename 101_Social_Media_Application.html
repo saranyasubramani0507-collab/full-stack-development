@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #4267B2;
+        }
+
+        .workflow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: #4267B2;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .post-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            background: #fafafa;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #4267B2;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #365899;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #4267B2;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+    </style>
+
+    <script>
+        function createPost() {
+            const content = document.getElementById("postContent").value;
+
+            if (content.trim() === "") {
+                alert("Please write something before posting.");
+                return;
+            }
+
+            document.getElementById("latestPost").innerHTML =
+                "<strong>Latest Post:</strong><br>" + content;
+
+            document.getElementById("postContent").value = "";
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Social Media Application</h1>
+
+    <p>
+        A Social Media Application enables users to connect, communicate,
+        share content, interact with friends, and build online communities.
+    </p>
+
+    <h2>Application Workflow</h2>
+
+    <div class="workflow">
+        <div class="box">Register</div>
+        <div class="box">Create Profile</div>
+        <div class="box">Add Friends</div>
+        <div class="box">Share Posts</div>
+        <div class="box">Like & Comment</div>
+        <div class="box">Notifications</div>
+    </div>
+
+    <h2>Create a Post</h2>
+
+    <textarea id="postContent" placeholder="What's on your mind?"></textarea>
+    <button onclick="createPost()">Post</button>
+
+    <div class="post-card" id="latestPost">
+        <strong>No posts yet.</strong>
+    </div>
+
+    <h2>Core Modules</h2>
+
+    <table>
+        <tr>
+            <th>Module</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>User Management</td>
+            <td>Registration, login, and profile management.</td>
+        </tr>
+        <tr>
+            <td>Posts</td>
+            <td>Create, edit, and delete posts.</td>
+        </tr>
+        <tr>
+            <td>Friends</td>
+            <td>Send and accept friend requests.</td>
+        </tr>
+        <tr>
+            <td>Messaging</td>
+            <td>Private chat and communication.</td>
+        </tr>
+        <tr>
+            <td>Notifications</td>
+            <td>Real-time activity updates.</td>
+        </tr>
+    </table>
+
+    <h2>Database Structure</h2>
+
+    <pre>
+Users
+-----
+id
+name
+email
+
+Posts
+-----
+id
+user_id
+content
+created_at
+
+Comments
+--------
+id
+post_id
+user_id
+comment
+
+Likes
+-----
+id
+post_id
+user_id
+    </pre>
+
+    <h2>Key Features</h2>
+
+    <ul>
+        <li>User profiles and authentication.</li>
+        <li>Post creation and sharing.</li>
+        <li>Like, comment, and share functionality.</li>
+        <li>Friend and follower management.</li>
+        <li>Private messaging.</li>
+        <li>Notifications and activity feeds.</li>
+        <li>Photo and video uploads.</li>
+        <li>Search and hashtag support.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>Connects people globally.</li>
+        <li>Encourages communication and collaboration.</li>
+        <li>Provides a platform for content sharing.</li>
+        <li>Builds communities and networks.</li>
+        <li>Supports business and personal branding.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

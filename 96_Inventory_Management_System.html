@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .workflow {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .box {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #217dbb;
+        }
+    </style>
+
+    <script>
+        function checkStock() {
+            alert("Inventory Stock Report Generated!");
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Inventory Management System</h1>
+
+    <p>
+        An Inventory Management System helps businesses track, manage,
+        and control stock levels, purchases, sales, suppliers,
+        and warehouse operations efficiently.
+    </p>
+
+    <h2>Inventory Workflow</h2>
+
+    <div class="workflow">
+        <div class="box">Supplier</div>
+        <div class="box">Purchase</div>
+        <div class="box">Warehouse</div>
+        <div class="box">Inventory</div>
+        <div class="box">Sales</div>
+        <div class="box">Reports</div>
+    </div>
+
+    <h2>Core Modules</h2>
+
+    <table>
+        <tr>
+            <th>Module</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Product Management</td>
+            <td>Maintain product information and categories.</td>
+        </tr>
+        <tr>
+            <td>Stock Management</td>
+            <td>Track inventory quantities and movements.</td>
+        </tr>
+        <tr>
+            <td>Supplier Management</td>
+            <td>Manage supplier details and purchases.</td>
+        </tr>
+        <tr>
+            <td>Sales Management</td>
+            <td>Record sales and update stock automatically.</td>
+        </tr>
+        <tr>
+            <td>Reporting</td>
+            <td>Generate inventory and sales reports.</td>
+        </tr>
+    </table>
+
+    <h2>Database Structure</h2>
+
+    <pre>
+Products
+--------
+id
+name
+category
+quantity
+price
+
+Suppliers
+---------
+id
+name
+phone
+
+Purchases
+---------
+id
+supplier_id
+product_id
+quantity
+
+Sales
+-----
+id
+product_id
+quantity
+sale_date
+    </pre>
+
+    <h2>Sample Action</h2>
+
+    <button class="btn" onclick="checkStock()">
+        Generate Stock Report
+    </button>
+
+    <h2>Key Features</h2>
+
+    <ul>
+        <li>Real-time inventory tracking.</li>
+        <li>Stock alerts for low inventory.</li>
+        <li>Supplier and purchase management.</li>
+        <li>Sales and order tracking.</li>
+        <li>Barcode support.</li>
+        <li>Warehouse management.</li>
+        <li>Detailed reporting and analytics.</li>
+        <li>Role-based user access.</li>
+    </ul>
+
+    <h2>Benefits</h2>
+
+    <ul>
+        <li>Reduces stock shortages and overstocking.</li>
+        <li>Improves inventory accuracy.</li>
+        <li>Enhances operational efficiency.</li>
+        <li>Provides better business insights.</li>
+        <li>Supports business growth.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

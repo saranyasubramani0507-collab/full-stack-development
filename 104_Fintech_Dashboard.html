@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fintech Dashboard</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+        }
+
+        .header{
+            background:#1e88e5;
+            color:white;
+            padding:20px;
+            text-align:center;
+        }
+
+        .container{
+            width:90%;
+            margin:20px auto;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+            margin-bottom:25px;
+        }
+
+        .card{
+            background:white;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+            text-align:center;
+        }
+
+        .card h3{
+            color:#1e88e5;
+            margin-bottom:10px;
+        }
+
+        .amount{
+            font-size:28px;
+            font-weight:bold;
+            color:#2c3e50;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+            border-radius:10px;
+            overflow:hidden;
+        }
+
+        th{
+            background:#1e88e5;
+            color:white;
+            padding:12px;
+        }
+
+        td{
+            padding:12px;
+            border-bottom:1px solid #ddd;
+        }
+
+        .income{
+            color:green;
+            font-weight:bold;
+        }
+
+        .expense{
+            color:red;
+            font-weight:bold;
+        }
+
+        .section{
+            margin-top:30px;
+        }
+
+        ul{
+            margin-top:10px;
+            padding-left:20px;
+        }
+
+        pre{
+            background:#2d2d2d;
+            color:white;
+            padding:15px;
+            border-radius:8px;
+            overflow-x:auto;
+        }
+
+        button{
+            background:#1e88e5;
+            color:white;
+            border:none;
+            padding:10px 18px;
+            border-radius:5px;
+            cursor:pointer;
+            margin-top:15px;
+        }
+
+        button:hover{
+            background:#1565c0;
+        }
+    </style>
+
+    <script>
+        function generateReport(){
+            alert("Financial Report Generated Successfully!");
+        }
+    </script>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Fintech Dashboard</h1>
+        <p>Financial Technology Management Platform</p>
+    </div>
+
+    <div class="container">
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Balance</h3>
+                <div class="amount">$25,400</div>
+            </div>
+
+            <div class="card">
+                <h3>Monthly Income</h3>
+                <div class="amount">$8,200</div>
+            </div>
+
+            <div class="card">
+                <h3>Monthly Expenses</h3>
+                <div class="amount">$3,750</div>
+            </div>
+
+            <div class="card">
+                <h3>Investments</h3>
+                <div class="amount">$12,500</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Recent Transactions</h2>
+
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                </tr>
+
+                <tr>
+                    <td>05-Jun-2026</td>
+                    <td>Salary Credit</td>
+                    <td class="income">Income</td>
+                    <td>$2,000</td>
+                </tr>
+
+                <tr>
+                    <td>04-Jun-2026</td>
+                    <td>Online Shopping</td>
+                    <td class="expense">Expense</td>
+                    <td>$150</td>
+                </tr>
+
+                <tr>
+                    <td>03-Jun-2026</td>
+                    <td>Investment Deposit</td>
+                    <td class="income">Investment</td>
+                    <td>$500</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Core Modules</h2>
+
+            <ul>
+                <li>Account Management</li>
+                <li>Digital Payments</li>
+                <li>Transaction Monitoring</li>
+                <li>Budget Planning</li>
+                <li>Investment Tracking</li>
+                <li>Loan Management</li>
+                <li>Fraud Detection</li>
+                <li>Financial Analytics</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Database Structure</h2>
+
+<pre>
+Users
+-----
+id
+name
+email
+
+Accounts
+--------
+id
+user_id
+balance
+
+Transactions
+------------
+id
+account_id
+amount
+type
+date
+
+Investments
+-----------
+id
+user_id
+investment_type
+amount
+</pre>
+        </div>
+
+        <div class="section">
+            <h2>Key Features</h2>
+
+            <ul>
+                <li>Real-time financial tracking.</li>
+                <li>Secure digital payments.</li>
+                <li>Expense and income monitoring.</li>
+                <li>Investment portfolio management.</li>
+                <li>Financial reports and analytics.</li>
+                <li>Multi-user access control.</li>
+                <li>Mobile-friendly dashboard.</li>
+                <li>Advanced security features.</li>
+            </ul>
+
+            <button onclick="generateReport()">
+                Generate Financial Report
+            </button>
+        </div>
+
+        <div class="section">
+            <h2>Benefits</h2>
+
+            <ul>
+                <li>Improves financial visibility.</li>
+                <li>Helps track spending habits.</li>
+                <li>Supports smarter investment decisions.</li>
+                <li>Provides secure digital transactions.</li>
+                <li>Enhances financial management efficiency.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
